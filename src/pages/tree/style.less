@@ -1,0 +1,44 @@
+@import '~antd/es/style/themes/default.less';
+
+.styleTree {
+  :global {
+    .ant-tree-treenode {
+      padding-top: 4px;
+      padding-bottom: 8px;
+      white-space: nowrap;
+    }
+
+    .ant-tree-switcher {
+      width: 20px;
+      margin-right: 4px;
+      color: @primary-color;
+      text-align: left;
+    }
+
+    .ant-tree-switcher-noop {
+      display: none;
+    }
+
+    .ant-tree-node-content-wrapper {
+      margin-left: -4px;
+    }
+
+    .ant-tree-indent-unit::before {
+      top: calc(100% - 38px);
+      right: -8px;
+      bottom: -15px;
+    }
+  }
+
+  .typeDot {
+    width: 13px;
+    height: 13px;
+    margin: 0 5px 3px 1px;
+    background: @primary-color;
+  }
+
+  .switcherIcon {
+    color: @primary-color;
+    font-size: 14px !important;
+  }
+}

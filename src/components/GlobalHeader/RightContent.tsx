@@ -29,7 +29,7 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = (props) => {
 
   return (
     <div className={className}>
-      <HeaderSearch
+      {/* <HeaderSearch
         className={`${styles.action} ${styles.search}`}
         placeholder="站内搜索"
         defaultValue="umi ui"
@@ -50,11 +50,12 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = (props) => {
             label: <a href="https://prolayout.ant.design/">Pro Layout</a>,
             value: 'Pro Layout',
           },
-        ]} // onSearch={value => {
-        //   //console.log('input', value);
-        // }}
-      />
-      <Tooltip title="使用文档">
+        ]} 
+        onSearch={value => {
+          console.log('input', value);
+        }}
+      /> */}
+      {/* <Tooltip title="使用文档">
         <a
           target="_blank"
           href="https://pro.ant.design/docs/getting-started"
@@ -63,14 +64,14 @@ const GlobalHeaderRight: React.SFC<GlobalHeaderRightProps> = (props) => {
         >
           <QuestionCircleOutlined />
         </a>
-      </Tooltip>
-      <NoticeIconView />
+      </Tooltip> */}
+      {/* <NoticeIconView /> */}
       <Avatar menu />
-      {REACT_APP_ENV && (
+      {/* {REACT_APP_ENV && (
         <span>
           <Tag color={ENVTagColor[REACT_APP_ENV]}>{REACT_APP_ENV}</Tag>
         </span>
-      )}
+      )} */}
       <SelectLang className={styles.action} />
     </div>
   );

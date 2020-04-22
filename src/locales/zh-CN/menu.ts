@@ -46,6 +46,8 @@ export default {
   'menu.account.trigger': '触发报错',
   'menu.account.logout': '退出登录',
   'menu.editor': '图形编辑器',
+  'menu.tree': '候选人管理',
+  'menu.formily': 'mormily',
   'menu.editor.flow': '流程编辑器',
   'menu.editor.mind': '脑图编辑器',
   'menu.editor.koni': '拓扑编辑器',

@@ -13,12 +13,12 @@ import ProLayout, {
 import React, { useEffect } from 'react';
 import { Link, useIntl, connect, Dispatch } from 'umi';
 import { GithubOutlined } from '@ant-design/icons';
-import { Result, Button } from 'antd';
+import { Result, Button, Divider } from 'antd';
 import Authorized from '@/utils/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { ConnectState } from '@/models/connect';
 import { getAuthorityFromRouter } from '@/utils/utils';
-import logo from '../assets/logo.svg';
+import logo from '../assets/logodx.svg';
 const noMatch = (
   <Result
     status={403}
@@ -31,6 +31,11 @@ const noMatch = (
     }
   />
 );
+const Title = () => {
+  return <span>
+    Dx Admin
+  </span>
+}
 export interface BasicLayoutProps extends ProLayoutProps {
   breadcrumbNameMap: {
     [path: string]: MenuDataItem;
@@ -58,11 +63,11 @@ const menuDataRender = (menuList: MenuDataItem[]): MenuDataItem[] =>
 
 const defaultFooterDom = (
   <DefaultFooter
-    copyright="2019 蚂蚁金服体验技术部出品"
+    copyright="2020 Dx前端体验技术部出品"
     links={[
       {
         key: 'Ant Design Pro',
-        title: 'Ant Design Pro',
+        title: 'dx1',
         href: 'https://pro.ant.design',
         blankTarget: true,
       },
@@ -74,7 +79,7 @@ const defaultFooterDom = (
       },
       {
         key: 'Ant Design',
-        title: 'Ant Design',
+        title: 'dx2',
         href: 'https://ant.design',
         blankTarget: true,
       },
@@ -87,6 +92,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     dispatch,
     children,
     settings,
+    collapsed,
     location = {
       pathname: '/',
     },
@@ -118,16 +124,19 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   const authorized = getAuthorityFromRouter(props.route.routes, location.pathname || '/') || {
     authority: undefined,
   };
+  console.log('authorized!.authority', authorized)
   const { formatMessage } = useIntl();
   return (
     <>
       <ProLayout
-        logo={logo}
+        logo={'https://shequ-test.dxapp.net/dxAdmin/camel.png'}
         formatMessage={formatMessage}
+        // title='dx'
         menuHeaderRender={(logoDom, titleDom) => (
           <Link to="/">
             {logoDom}
-            {titleDom}
+            {/* {titleDom} */}
+            {collapsed ? null : <h1>DxAdmin</h1>}
           </Link>
         )}
         onCollapse={handleMenuCollapse}
@@ -152,16 +161,17 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
           return first ? (
             <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
           ) : (
-            <span>{route.breadcrumbName}</span>
-          );
+              <span>{route.breadcrumbName}</span>
+            );
         }}
         footerRender={() => defaultFooterDom}
         menuDataRender={menuDataRender}
         rightContentRender={() => <RightContent />}
         {...props}
+        // title={() => <Title></Title>}
         {...settings}
       >
-        <Authorized authority={authorized!.authority} noMatch={noMatch}>
+        <Authorized authority={authorized.authority} noMatch={noMatch}>
           {children}
         </Authorized>
       </ProLayout>

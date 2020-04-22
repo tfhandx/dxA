@@ -57,6 +57,7 @@ const Model: ModelType = {
       });
       // Login successfully
       if (response.status === 'ok') {
+        // if (response.code === 200) {
         message.success('登录成功！');
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();

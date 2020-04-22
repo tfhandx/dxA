@@ -4,6 +4,8 @@
  */
 import { extend } from 'umi-request';
 import { notification } from 'antd';
+// const baseUrl = process.env.REACT_APP_ENV === 'dev' ? 'https://shequ-test.dxchain.com' : process.env.REACT_APP_ENV === 'pre' ? "https://shequ.dxchain.com" : ''
+const baseUrl = process.env.REACT_APP_ENV === 'dev' ? '' : process.env.REACT_APP_ENV === 'pre' ? "https://shequ.dxchain.com" : ''
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',
@@ -49,8 +51,21 @@ const errorHandler = (error: { response: Response }): Response => {
  * 配置request请求时的默认参数
  */
 const request = extend({
+  // prefix: '/dd',
   errorHandler, // 默认错误处理
   credentials: 'include', // 默认请求是否带上cookie
 });
+request.interceptors.request.use((url, options) => {
+  return (
+    {
+      // url: options.mock ? url : url === '/api/login/phone' ? `https://shequ-test.dxchain.com${url}` : `${baseUrl}${url}`,
+      url: options.mock ? url : `${baseUrl}${url}`,
+      options: {
+        ...options
+      },
+    }
+  );
+});
+
 
 export default request;

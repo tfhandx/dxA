@@ -8,7 +8,10 @@ export interface LoginParamsType {
 }
 
 export async function fakeAccountLogin(params: LoginParamsType) {
-  return request('/api/login/account', {
+  const url = '/api/login/phone';
+  const url1 = '/api/login/account';
+
+  return request(url1, {
     method: 'POST',
     data: params,
   });

@@ -35,6 +35,13 @@ const Login: React.FC<LoginProps> = (props) => {
 
   const handleSubmit = (values: LoginParamsType) => {
     const { dispatch } = props;
+    const data = {
+      data: {
+        nationCode: "86",
+        phone: "13167638835",
+        password: "1234564"
+      }
+    }
     dispatch({
       type: 'userAndlogin/login',
       payload: {
@@ -72,7 +79,7 @@ const Login: React.FC<LoginProps> = (props) => {
             ]}
           />
         </Tab>
-        <Tab key="mobile" tab="手机号登录">
+        {/* <Tab key="mobile" tab="手机号登录">
           {status === 'error' && loginType === 'mobile' && !submitting && (
             <LoginMessage content="验证码错误" />
           )}
@@ -115,16 +122,16 @@ const Login: React.FC<LoginProps> = (props) => {
           >
             忘记密码
           </a>
-        </div>
+        </div> */}
         <Submit loading={submitting}>登录</Submit>
         <div className={styles.other}>
-          其他登录方式
+          {/* 其他登录方式
           <AlipayCircleOutlined className={styles.icon} />
           <TaobaoCircleOutlined className={styles.icon} />
-          <WeiboCircleOutlined className={styles.icon} />
-          <Link className={styles.register} to="/user/register">
+          <WeiboCircleOutlined className={styles.icon} /> */}
+          {/* <Link className={styles.register} to="/user/register">
             注册账户
-          </Link>
+          </Link> */}
         </div>
       </LoginFrom>
     </div>
