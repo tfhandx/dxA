@@ -11,7 +11,7 @@ export async function fakeAccountLogin(params: LoginParamsType) {
   const url = '/api/login/phone';
   const url1 = '/api/login/account';
 
-  return request(url1, {
+  return request(url, {
     method: 'POST',
     data: params,
   });

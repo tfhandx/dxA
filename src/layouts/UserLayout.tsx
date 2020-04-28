@@ -63,24 +63,46 @@ const UserLayout: React.FC<UserLayoutProps> = (props) => {
         </div>
 
         <DefaultFooter
+          style={{
+            position: 'sticky',
+            top: '1000px',
+          }}
           copyright="2020 Dx前端体验部出品"
           links={[
             {
-              key: 'Ant Design Pro',
-              title: 'Dx1',
-              href: 'https://pro.ant.design',
+              key: 'shequ',
+              title: '社区',
+              href: 'https://shequ.dxchain.com/',
               blankTarget: true,
             },
             {
-              key: 'github',
-              title: <GithubOutlined />,
-              href: 'https://github.com/ant-design/ant-design-pro',
+              key: 'main',
+              title: '官网',
+              href: 'https://www.dxchain.com',
               blankTarget: true,
             },
             {
-              key: 'Ant Design',
-              title: 'Dx2',
-              href: 'https://ant.design',
+              key: 'xiting',
+              title: '西亭数据',
+              href: 'https://www.xitingdata.com/signup&refer_by_code=35569',
+              blankTarget: true,
+            },
+            {
+              key: 'boke',
+              title: 'DX博客',
+              href: 'https://blog.dxchain.com/',
+              blankTarget: true,
+            },
+            {
+              key: 'linknode',
+              title: '链节点',
+              href: 'https://www.chainnode.com/forum/382',
+              blankTarget: true,
+            },
+            {
+              key: 'boke',
+              title: 'DX博客',
+              href: 'https://blog.dxchain.com/',
               blankTarget: true,
             },
           ]}

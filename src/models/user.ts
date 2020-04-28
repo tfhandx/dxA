@@ -1,5 +1,8 @@
-import { Effect, Reducer } from 'umi';
 
+import { stringify } from 'querystring';
+import { history, Reducer, Effect } from 'umi';
+import { clareAuthority } from '@/utils/authority';
+import { getPageQuery } from '@/utils/utils';
 import { queryCurrent, query as queryUsers } from '@/services/user';
 
 export interface CurrentUser {
@@ -38,6 +41,7 @@ const UserModel: UserModelType = {
 
   state: {
     currentUser: {},
+    isLogin: false,
   },
 
   effects: {
@@ -54,6 +58,23 @@ const UserModel: UserModelType = {
         type: 'saveCurrentUser',
         payload: response,
       });
+    },
+    *logout({ payload }, { call, put }) {
+      const { redirect } = getPageQuery();
+      // Note: There may be security issues, please note
+      clareAuthority();
+      yield put({
+        type: 'user/saveCurrentUser',
+        payload: payload
+      });
+      if (window.location.pathname !== '/user/login' && !redirect) {
+        history.replace({
+          pathname: '/user/login',
+          search: stringify({
+            redirect: window.location.href,
+          }),
+        });
+      }
     },
   },
 

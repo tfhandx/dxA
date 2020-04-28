@@ -38,14 +38,15 @@ const Login: React.FC<LoginProps> = (props) => {
     const data = {
       data: {
         nationCode: "86",
-        phone: "13167638835",
-        password: "1234564"
+        // phone: "13167638835",
+        // password: "1234564"
+        ...values
       }
     }
     dispatch({
       type: 'userAndlogin/login',
       payload: {
-        ...values,
+        ...data,
         type,
       },
     });
@@ -55,22 +56,26 @@ const Login: React.FC<LoginProps> = (props) => {
       <LoginFrom activeKey={type} onTabChange={setType} onSubmit={handleSubmit}>
         <Tab key="account" tab="账户密码登录">
           {status === 'error' && loginType === 'account' && !submitting && (
-            <LoginMessage content="账户或密码错误（admin/ant.design）" />
+            <LoginMessage content="账户或密码错误!" />
           )}
 
           <UserName
-            name="userName"
-            placeholder="用户名: admin or user"
+            name="phone"
+            placeholder="手机账号:"
             rules={[
               {
                 required: true,
-                message: '请输入用户名!',
+                message: '请输入手机账号!',
+              },
+              {
+                pattern: /^1\d{10}$/,
+                message: '手机号格式错误！',
               },
             ]}
           />
           <Password
             name="password"
-            placeholder="密码: ant.design"
+            placeholder="密码:"
             rules={[
               {
                 required: true,

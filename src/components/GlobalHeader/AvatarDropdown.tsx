@@ -23,6 +23,7 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
       if (dispatch) {
         dispatch({
           type: 'login/logout',
+          payload: { isLogined: false }
         });
       }
 
@@ -70,16 +71,16 @@ class AvatarDropdown extends React.Component<GlobalHeaderRightProps> {
         </span>
       </HeaderDropdown>
     ) : (
-      <span className={`${styles.action} ${styles.account}`}>
-        <Spin
-          size="small"
-          style={{
-            marginLeft: 8,
-            marginRight: 8,
-          }}
-        />
-      </span>
-    );
+        <span className={`${styles.action} ${styles.account}`}>
+          <Spin
+            size="small"
+            style={{
+              marginLeft: 8,
+              marginRight: 8,
+            }}
+          />
+        </span>
+      );
   }
 }
 

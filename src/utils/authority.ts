@@ -30,3 +30,8 @@ export function setAuthority(authority: string | string[]): void {
   // auto reload
   reloadAuthorized();
 }
+export function clareAuthority(authority: string | string[]): void {
+  localStorage && localStorage.clear();
+  // auto reload
+  reloadAuthorized();
+}

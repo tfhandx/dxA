@@ -11,10 +11,11 @@ import ProLayout, {
   SettingDrawer,
 } from '@ant-design/pro-layout';
 import React, { useEffect } from 'react';
-import { Link, useIntl, connect, Dispatch } from 'umi';
+import { Link, useIntl, connect, Dispatch, Redirect } from 'umi';
 import { GithubOutlined } from '@ant-design/icons';
 import { Result, Button, Divider } from 'antd';
 import Authorized from '@/utils/Authorized';
+// import Authorized from '@/pages/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
 import { ConnectState } from '@/models/connect';
 import { getAuthorityFromRouter } from '@/utils/utils';
@@ -63,24 +64,47 @@ const menuDataRender = (menuList: MenuDataItem[]): MenuDataItem[] =>
 
 const defaultFooterDom = (
   <DefaultFooter
+    style={{
+      // position: 'absolute',
+      // bottom: '0px',
+      // width: '100%'
+    }}
     copyright="2020 Dx前端体验技术部出品"
     links={[
       {
-        key: 'Ant Design Pro',
-        title: 'dx1',
-        href: 'https://pro.ant.design',
+        key: 'shequ',
+        title: '社区',
+        href: 'https://shequ.dxchain.com/',
         blankTarget: true,
       },
       {
-        key: 'github',
-        title: <GithubOutlined />,
-        href: 'https://github.com/ant-design/ant-design-pro',
+        key: 'main',
+        title: '官网',
+        href: 'https://www.dxchain.com',
         blankTarget: true,
       },
       {
-        key: 'Ant Design',
-        title: 'dx2',
-        href: 'https://ant.design',
+        key: 'xiting',
+        title: '西亭数据',
+        href: 'https://www.xitingdata.com/signup&refer_by_code=35569',
+        blankTarget: true,
+      },
+      {
+        key: 'boke',
+        title: 'DX博客',
+        href: 'https://blog.dxchain.com/',
+        blankTarget: true,
+      },
+      {
+        key: 'linknode',
+        title: '链节点',
+        href: 'https://www.chainnode.com/forum/382',
+        blankTarget: true,
+      },
+      {
+        key: 'boke',
+        title: 'DX博客',
+        href: 'https://blog.dxchain.com/',
         blankTarget: true,
       },
     ]}
@@ -93,6 +117,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     children,
     settings,
     collapsed,
+    login,
     location = {
       pathname: '/',
     },
@@ -126,6 +151,9 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   };
   console.log('authorized!.authority', authorized)
   const { formatMessage } = useIntl();
+  const { isLogined } = login;
+  const isLogin = isLogined;
+  console.log('isLogined', isLogin)
   return (
     <>
       <ProLayout
@@ -171,7 +199,8 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
         // title={() => <Title></Title>}
         {...settings}
       >
-        <Authorized authority={authorized.authority} noMatch={noMatch}>
+        <Authorized authority={authorized.authority}
+          noMatch={isLogin ? <Redirect to="/exception/403" /> : <Redirect to="/user/login" />}>
           {children}
         </Authorized>
       </ProLayout>
@@ -188,7 +217,8 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   );
 };
 
-export default connect(({ global, settings }: ConnectState) => ({
+export default connect(({ global, settings, login }: ConnectState) => ({
   collapsed: global.collapsed,
   settings,
+  login
 }))(BasicLayout);

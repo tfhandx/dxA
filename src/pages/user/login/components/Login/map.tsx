@@ -8,12 +8,7 @@ export default {
       size: 'large',
       id: 'userName',
       prefix: (
-        <UserOutlined
-          style={{
-            color: '#1890ff',
-          }}
-          className={styles.prefixIcon}
-        />
+        <MobileTwoTone className={styles.prefixIcon} />
       ),
       placeholder: 'admin',
     },
@@ -42,7 +37,12 @@ export default {
   Mobile: {
     props: {
       size: 'large',
-      prefix: <MobileTwoTone className={styles.prefixIcon} />,
+      prefix: <UserOutlined
+        style={{
+          color: '#1890ff',
+        }}
+        className={styles.prefixIcon}
+      />,
       placeholder: 'mobile number',
     },
     rules: [

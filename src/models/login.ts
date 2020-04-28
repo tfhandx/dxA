@@ -2,13 +2,15 @@ import { stringify } from 'querystring';
 import { history, Reducer, Effect } from 'umi';
 
 import { fakeAccountLogin } from '@/services/login';
-import { setAuthority } from '@/utils/authority';
+import { setAuthority, clareAuthority } from '@/utils/authority';
 import { getPageQuery } from '@/utils/utils';
+import storage from '@/utils/storage'
 
 export interface StateType {
   status?: 'ok' | 'error';
   type?: string;
   currentAuthority?: 'user' | 'guest' | 'admin';
+  isLogined?: boolean
 }
 
 export interface LoginModelType {
@@ -20,6 +22,7 @@ export interface LoginModelType {
   };
   reducers: {
     changeLoginStatus: Reducer<StateType>;
+    saveCurrentLoginStatus: Reducer<StateType>;
   };
 }
 
@@ -28,14 +31,19 @@ const Model: LoginModelType = {
 
   state: {
     status: undefined,
+    isLogined: false,
   },
 
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(fakeAccountLogin, payload);
       yield put({
-        type: 'changeLoginStatus',
+        type: 'login/changeLoginStatus',
         payload: response,
+      });
+      yield put({
+        type: 'login/saveCurrentLoginStatus',
+        payload: { isLogined: true }
       });
       // Login successfully
       if (response.status === 'ok') {
@@ -58,9 +66,14 @@ const Model: LoginModelType = {
       }
     },
 
-    logout() {
+    *logout({ payload }, { call, put }) {
       const { redirect } = getPageQuery();
       // Note: There may be security issues, please note
+      yield put({
+        type: 'saveCurrentLoginStatus',
+        payload: payload
+      });
+      storage.clear();
       if (window.location.pathname !== '/user/login' && !redirect) {
         history.replace({
           pathname: '/user/login',
@@ -69,6 +82,7 @@ const Model: LoginModelType = {
           }),
         });
       }
+      clareAuthority();
     },
   },
 
@@ -79,6 +93,14 @@ const Model: LoginModelType = {
         ...state,
         status: payload.status,
         type: payload.type,
+      };
+    },
+    saveCurrentLoginStatus(state, { payload }) {
+      console.log('payload.isLogined', payload.isLogined)
+
+      return {
+        ...state,
+        isLogined: payload.isLogined || false
       };
     },
   },

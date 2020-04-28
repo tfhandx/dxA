@@ -75,4 +75,8 @@ const StyleTree: React.FC<StyleTreeProps> = props => {
   );
 };
 
-export default StyleTree;
+// export default StyleTree;
+const TreeConstruct = ({ ...props }) => {
+  return <div className={styles.wrapper}>感觉整个世界都绿了</div>
+}
+export default TreeConstruct;

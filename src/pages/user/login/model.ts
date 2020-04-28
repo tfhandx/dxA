@@ -2,6 +2,7 @@ import { Effect, history, Reducer } from 'umi';
 import { message } from 'antd';
 import { fakeAccountLogin, getFakeCaptcha } from './service';
 import { parse } from 'qs';
+import storage from '@/utils/storage'
 
 export function getPageQuery() {
   return parse(window.location.href.split('?')[1]);
@@ -51,14 +52,19 @@ const Model: ModelType = {
   effects: {
     *login({ payload }, { call, put }) {
       const response = yield call(fakeAccountLogin, payload);
-      yield put({
-        type: 'changeLoginStatus',
-        payload: response,
-      });
       // Login successfully
-      if (response.status === 'ok') {
-        // if (response.code === 200) {
+      // if (response.status === 'ok') {
+      if (response.code === 200) {
+        yield put({
+          type: 'login/saveCurrentLoginStatus',
+          payload: { isLogined: true }
+        });
+        yield put({
+          type: 'changeLoginStatus',
+          payload: response,
+        });
         message.success('登录成功！');
+        storage.set('user', response.data)
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params as { redirect: string };
