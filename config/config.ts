@@ -174,6 +174,44 @@ export default defineConfig({
             //   ],
             // },
             {
+              path: '/userlist',
+              icon: 'smile',
+              name: 'user-list',
+              routes: [
+                {
+                  name: 'list',
+                  icon: 'smile',
+                  path: '/userlist/list',
+                  component: './userlist/list',
+                },
+                {
+                  path: '/userlist/detail',
+                  name: 'detail',
+                  icon: 'profile',
+                  routes: [
+                    {
+                      name: 'detail-basic',
+                      icon: 'smile',
+                      path: '/userlist/detail/basic',
+                      component: './userlist/detail/basic',
+                    },
+                    {
+                      name: 'detail-advanced',
+                      icon: 'smile',
+                      path: '/userlist/detail/advanced',
+                      component: './userlist/detail/advanced',
+                    },
+                    {
+                      name: 'detail-miner',
+                      icon: 'smile',
+                      path: '/userlist/detail/miner',
+                      component: './userlist/detail/miner',
+                    },
+                  ],
+                },
+              ],
+            },
+            {
               path: '/list',
               icon: 'table',
               name: 'list',

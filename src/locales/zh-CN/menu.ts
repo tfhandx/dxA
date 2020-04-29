@@ -51,4 +51,14 @@ export default {
   'menu.editor.flow': '流程编辑器',
   'menu.editor.mind': '脑图编辑器',
   'menu.editor.koni': '拓扑编辑器',
+  //用户管理模块
+  'menu.user-list': '用户管理',
+  //用户管理列表模块
+  'menu.user-list.list': '用户列表',
+  //用户管理基本详情模块
+  'menu.user-list.detail': '用户详情',
+  //用户基本详情模块
+  'menu.user-list.detail.detail-basic': '用户基本详情',
+  'menu.user-list.detail.detail-advanced': '超级节点信息',
+  'menu.user-list.detail.detail-miner': '矿机账户详情'
 };

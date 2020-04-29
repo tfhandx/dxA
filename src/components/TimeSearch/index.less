@@ -1,0 +1,65 @@
+// @import '~antd/es/style/themes/default.less';
+@media screen and (max-width: 750px) {
+    .salesExtraWrap {
+    //   display: none;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-items:space-evenly;
+    align-items: center;
+    }
+    :global {
+    .ant-calendar-picker{
+        width:100% !important;
+    }
+    .ant-input{
+        height:40px;
+    }
+}
+    .salesExtra {
+        display: flex;
+        // margin-right: 24px;
+        margin-bottom:10px;
+        width:100%;
+        flex-wrap: wrap;
+        a {
+            flex:1 0 60px;
+          margin-left: 20px;
+          color:fade(#000, 65%);;
+          &:hover {
+            color: #0091FF;
+          }
+          &.currentDate {
+            color: #0091FF;
+          }
+        }
+      }
+}
+  @media screen and (min-width: 1200px) {
+    .salesExtra {
+        display: flex;
+        justify-items:space-evenly;
+        align-items: center;
+    //   display: none;
+    }
+    .salesExtra {
+        display: inline-block;
+        margin-right: 24px;
+        a {
+          margin-left: 24px;
+          color:fade(#000, 65%);;
+          &:hover {
+            color: #0091FF !important;
+          }
+          &.currentDate {
+            color: #0091FF;
+          }
+        }
+      }
+  }
+  .am-list-item .am-list-line .am-list-content {
+    display: flex;
+  }
+  .calendar-list .right {
+      float: right;
+  }

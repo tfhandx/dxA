@@ -1,10 +1,29 @@
 import { parse } from 'querystring';
 import pathRegexp from 'path-to-regexp';
 import { Route } from '@/models/connect';
+import React, { useEffect, useState } from 'react'
 
 /* eslint no-useless-escape:0 import/prefer-default-export:0 */
 const reg = /(((^https?:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+(?::\d+)?|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)$/;
 
+export const useWindowViewPortChange = () => {
+  const [offsetOfWindow, setOffsetOfWindow] = useState(window.document.body.offsetWidth)
+  useEffect(() => {
+    const resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize'
+    const changeSizeOfWindow = () => {
+      setOffsetOfWindow(window.document.body.offsetWidth)
+    }
+    // window.addEventListener('resize', changeSizeOfWindow)
+    window.addEventListener(resizeEvt, changeSizeOfWindow, false);
+    window.addEventListener(resizeEvt, changeSizeOfWindow, false);
+    document.addEventListener('DOMContentLoaded', changeSizeOfWindow, false);
+    return () => {
+      window.removeEventListener(resizeEvt, changeSizeOfWindow);
+      document.removeEventListener('DOMContentLoaded', changeSizeOfWindow);
+    }
+  })
+  return offsetOfWindow;
+}
 export const isUrl = (path: string): boolean => reg.test(path);
 
 export const isAntDesignPro = (): boolean => {
