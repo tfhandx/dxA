@@ -82,3 +82,12 @@ export const getRouteAuthority = (path: string, routeData: Route[]) => {
   });
   return authorities;
 };
+export function strInsert(str, length) {
+  if (str === undefined || str === '' || str === null) {
+    return '非法的序列号'
+  }
+  let reg = new RegExp("(\\d|[a-z]|[A-Z]){" + length + "}", "g");
+  let ma = str.match(reg);
+  // let ma = str.match(/(\d|[a-z]|[A-Z]){5}/g);
+  return ma.join('-')
+}

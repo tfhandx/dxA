@@ -1,5 +1,6 @@
 export interface TableListItem {
   key: number;
+  id: string;
   disabled?: boolean;
   href: string;
   avatar: string;

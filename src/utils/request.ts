@@ -56,7 +56,7 @@ const token = storage.get('user') && Object.prototype.hasOwnProperty.call(storag
 const request = extend({
   // prefix: '/dd',
   errorHandler, // 默认错误处理
-  credentials: 'include', // 默认请求是否带上cookie
+  // credentials: 'include', // 默认请求是否带上cookie
   headers: {
     'Authorization': `Bearer ${token}`
   }

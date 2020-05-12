@@ -1,6 +1,7 @@
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Divider, Dropdown, Menu, message, Radio } from 'antd';
 import React, { useState, useRef } from 'react';
+import { history } from 'umi';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
@@ -77,11 +78,31 @@ const UserList: React.FC<{}> = () => {
   const [createModalVisible, handleModalVisible] = useState<boolean>(false);
   const [updateModalVisible, handleUpdateModalVisible] = useState<boolean>(false);
   const [stepFormValues, setStepFormValues] = useState({});
+  const gotoDetail = (id = '') => {
+    history.push({
+      pathname: '/userlist/detail/basic',
+      query: {
+        id: `${id}`,
+      },
+    });
+  }
   const actionRef = useRef<ActionType>();
   const columns: ProColumns<TableListItem>[] = [
     {
       title: 'ID',
       dataIndex: 'name',
+      render: (_, record) => (
+        <>
+          <a
+            onClick={() => {
+              gotoDetail(record.name);
+            }}
+          >
+            {_}
+          </a>
+          {/* <a href="">订阅警报</a> */}
+        </>
+      ),
     },
     {
       title: '电话',
@@ -140,7 +161,7 @@ const UserList: React.FC<{}> = () => {
       order: 10,
       hideInTable: true,
       renderFormItem: (_, { type, defaultRender, ...rest }, form) => {
-        return <RadioGroup defaultValue="all" {...rest}>
+        return <RadioGroup initialValues="all" {...rest}>
           <RadioButton value="all">全部</RadioButton>
           <RadioButton value="progress">冻结账户</RadioButton>
           <RadioButton value="waiting">冻结提币</RadioButton>

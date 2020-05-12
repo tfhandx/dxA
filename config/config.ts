@@ -173,6 +173,7 @@ export default defineConfig({
             //     },
             //   ],
             // },
+          //用户管理
             {
               path: '/userlist',
               icon: 'smile',
@@ -201,7 +202,7 @@ export default defineConfig({
                       path: '/userlist/detail/advanced',
                       component: './userlist/detail/advanced',
                     },
-                    {
+                    {//矿机详情
                       name: 'detail-miner',
                       icon: 'smile',
                       path: '/userlist/detail/miner',

@@ -147,7 +147,7 @@ const HooksTable = (props) => {
         {/* <Spin tip="Loading..." spinning={loading}> */}
         <Table
             bordered
-            rowKey={record => record.id}
+            rowKey={record => record.name}
             scroll={
                 window.document.body.offsetWidth < 1200 ?
                     { x: true } : { x: true }

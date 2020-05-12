@@ -22,30 +22,35 @@ const columns: ProColumns<TableListItem>[] = [
   {
     title: '总资产',
     dataIndex: 'callNo',
+    key: 'callNo',
     sorter: true,
     renderText: (val: string) => `${val} 万`,
   },
   {
     title: '现金账户',
     dataIndex: 'callNo',
+    key: 'callNo1',
     sorter: true,
     renderText: (val: string) => `${val} 万`,
   },
   {
     title: '储蓄账户',
     dataIndex: 'callNo',
+    key: 'callNo2',
     sorter: true,
     renderText: (val: string) => `${val} 万`,
   },
   {
     title: '矿机账户',
     dataIndex: 'callNo',
+    key: 'callNo3',
     sorter: true,
     renderText: (val: string) => `${val} 万`,
   },
   {
     title: '超级节点',
     dataIndex: 'callNo',
+    key: 'callNo4',
     sorter: true,
     renderText: (val: string) => `${val} 万`,
   },
@@ -159,11 +164,11 @@ class Basic extends Component<BasicProps, BasicState> {
       depsValue: e.target.value,
     })
   }
-  goexactDetail = (e) => {
+  goexactDetail = (pathname = '') => {
     history.push({
-      pathname: '/userlist/detail/miner',
+      pathname: pathname,
       query: {
-        a: 'b',
+        id: history.location.query.id,
       },
     });
   }
@@ -272,7 +277,8 @@ class Basic extends Component<BasicProps, BasicState> {
         ]
       }>
         <Card bordered={false} title="基本信息" style={{ marginBottom: 32 }} extra={[
-          <Button style={{ marginRight: 10 }} onClick={this.goexactDetail} key="3">矿机账户详情</Button>,
+
+          <Button style={{ marginRight: 10 }} onClick={() => this.goexactDetail('/userlist/detail/miner')} key="3">矿机账户详情</Button>,
           <Button style={{ marginRight: 10 }} key="2">Operation</Button>,
           <Button style={{ marginRight: 10 }} key="1" type="primary">
             Primary
