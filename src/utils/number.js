@@ -1,6 +1,6 @@
 const digitsRE = /(\d{3})(?=\d)/g
 
-function currency(value, decimals) {
+function currency(value, big = false, decimals) {
   if (value === '' || value === undefined || value === null) {
     return '--.--'
   }
@@ -19,9 +19,16 @@ function currency(value, decimals) {
     ? stringified.slice(-1 - decimals)
     : ''
   var sign = value < 0 ? '-' : ''
-  return sign + head +
+  return big ? <span style={{
+    fontSize: '20px',
+    color: '#0091FF',
+    fontWeight: 800,
+  }}> {sign + head +
     _int.slice(i).replace(digitsRE, '$1,') +
-    _float
+    _float}</span > : <span>{sign + head +
+      _int.slice(i).replace(digitsRE, '$1,') +
+      _float}</span>
+
 }
 
 function chkVal(value, quotationAccuracy = 2) {

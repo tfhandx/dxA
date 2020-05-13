@@ -252,20 +252,20 @@ class Center extends Component<CenterProps, CenterState> {
   }
 }
 
-// export default connect(
-//   ({
-//     loading,
-//     accountAndcenter,
-//   }: {
-//     loading: { effects: { [key: string]: boolean } };
-//     accountAndcenter: ModalState;
-//   }) => ({
-//     currentUser: accountAndcenter.currentUser,
-//     currentUserLoading: loading.effects['accountAndcenter/fetchCurrent'],
-//   }),
-// )(Center);
+export default connect(
+  ({
+    loading,
+    accountAndcenter,
+  }: {
+    loading: { effects: { [key: string]: boolean } };
+    accountAndcenter: ModalState;
+  }) => ({
+    currentUser: accountAndcenter.currentUser,
+    currentUserLoading: loading.effects['accountAndcenter/fetchCurrent'],
+  }),
+)(Center);
 
-const AccountCenter = () => {
-  return <div>个人中心</div>
-}
-export default AccountCenter
+// const AccountCenter = () => {
+//   return <div>个人中心</div>
+// }
+// export default AccountCenter

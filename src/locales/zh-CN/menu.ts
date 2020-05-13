@@ -60,5 +60,17 @@ export default {
   //用户基本详情模块
   'menu.user-list.detail.detail-basic': '用户基本详情',
   'menu.user-list.detail.detail-advanced': '超级节点信息',
-  'menu.user-list.detail.detail-miner': '矿机账户详情'
+  'menu.user-list.detail.detail-miner': '矿机账户详情',
+  'menu.user-list.detail.detail-chk': '现金账户详情',
+  'menu.user-list.detail.detail-saving': '储蓄账户详情',
+  'menu.user-list.detail.detail-supernode': '超级节点账户详情',
+  'menu.fundslist': '资金管理',
+  //资金管理
+  'menu.fundslist.list': '资金浏览查询',
+  //资金管理详情模块
+  'menu.fundslist.detail': '用户资金详情',
+  //用户基本详情模块
+  'menu.fundslist.detail.detail-out': '用户转出资金详情',
+  'menu.fundslist.detail.detail-in': '用户转入资金详情',
+  'menu.fundslist.detail.detail-basic': '单个用户资金详情',
 };

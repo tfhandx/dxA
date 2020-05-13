@@ -1,5 +1,5 @@
 import { useRequest } from '@umijs/hooks';
-import request from 'umi-request';
+import request from '@/utils/request';
 import React, { memo, useCallback, useState, useEffect, useMemo } from "react";
 import TimeSearch from '@/components/TimeSearch/index'
 import {
@@ -34,14 +34,15 @@ const dateFormat = 'YYYY-MM-DD';
 const HooksTable = (props) => {
     const usePagination = props.usePagination;
     const Api = props.api;
+    const method = props.method || 'GET';
     const columns = props.columns || []
     const deps = props.deps || []
     const depsProps = props.depsProps || []
     const [start, setStart] = useState('')
     const [end, setEnd] = useState('')
     async function getRule(data) {
-        return request('/api/test', {
-            method: 'POST',
+        return request(Api, {
+            method: method,
             data: {
                 ...data,
             },
@@ -93,7 +94,7 @@ const HooksTable = (props) => {
     const { pagination, tableProps, data, error, loading, params, run, cancel, refresh } = useRequest(
         ({ current, pageSize, sorter: s, filters: f }) => {
             const p = {
-                page: current, size: pageSize,
+                pageNumber: current, pageSize: pageSize,
                 // start,end 
             };
             // if (s.field && s.order) {
@@ -114,8 +115,8 @@ const HooksTable = (props) => {
             // manual: true,
             // pollingInterval:10000,
             formatResult: (res) => {
-                const data = res.data || [];
-                const total = res.total || 0;
+                const data = res.data.list || [];
+                const total = res.data.total || 0;
                 return {
                     list: data,
                     total: total
@@ -124,7 +125,8 @@ const HooksTable = (props) => {
             loadingDelay: 200,
             pollingWhenHidden: false,
             paginated: true,
-            cacheKey: 'hooksTable',
+            refreshOnWindowFocus: true,
+            // cacheKey: 'hooksTable',
             refreshDeps: [start, end, ...deps]
             // pollingInterval:1000
             // defaultPageSize: 5
@@ -147,7 +149,7 @@ const HooksTable = (props) => {
         {/* <Spin tip="Loading..." spinning={loading}> */}
         <Table
             bordered
-            rowKey={record => record.name}
+            rowKey={record => record.id}
             scroll={
                 window.document.body.offsetWidth < 1200 ?
                     { x: true } : { x: true }
