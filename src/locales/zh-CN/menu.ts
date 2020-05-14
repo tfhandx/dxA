@@ -73,4 +73,7 @@ export default {
   'menu.fundslist.detail.detail-out': '用户转出资金详情',
   'menu.fundslist.detail.detail-in': '用户转入资金详情',
   'menu.fundslist.detail.detail-basic': '单个用户资金详情',
+  'menu.authority': '权限管理',
+  'menu.authority-create': '添加管理员',
+
 };

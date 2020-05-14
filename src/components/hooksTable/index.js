@@ -33,6 +33,8 @@ const dateFormat = 'YYYY-MM-DD';
 
 const HooksTable = (props) => {
     const usePagination = props.usePagination;
+    const usetimesearch = props.usetimesearch;
+    const bordered = props.bordered;
     const Api = props.api;
     const method = props.method || 'GET';
     const columns = props.columns || []
@@ -144,11 +146,11 @@ const HooksTable = (props) => {
         {/* <Button onClick={()=>run(params)}>
             goRequesthooks
         </Button> */}
-        < TimeSearch sentData={setDateValue} />
+        {usetimesearch ? < TimeSearch sentData={setDateValue} /> : null}
         <div style={{ marginTop: '20px' }} />
         {/* <Spin tip="Loading..." spinning={loading}> */}
         <Table
-            bordered
+            bordered={bordered}
             rowKey={record => record.id}
             scroll={
                 window.document.body.offsetWidth < 1200 ?

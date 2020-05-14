@@ -408,6 +408,34 @@ export default defineConfig({
                 },
               ],
             },
+            {
+              name: 'authority',
+              icon: 'user',
+              path: '/authority',
+              component: './authority',
+              // hideInMenu: true,
+              // routes: [
+              //   {
+              //     name: 'center',
+              //     icon: 'smile',
+              //     path: '/account/center',
+              //     component: './account/center',
+              //   },
+              //   {
+              //     name: 'settings',
+              //     icon: 'smile',
+              //     path: '/account/settings',
+              //     component: './account/settings',
+              //   },
+              // ],
+            },
+            {
+              name: 'authority-create',
+              icon: 'user',
+              path: '/authority/create',
+              component: './authority/create',
+              // hideInMenu: true,
+            },
             // {
             //   name: 'editor',
             //   icon: 'highlight',

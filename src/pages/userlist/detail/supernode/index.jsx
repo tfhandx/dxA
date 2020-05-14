@@ -8,8 +8,8 @@ import { Button, Descriptions, Card, Spin, Tabs } from 'antd'
 import VoteNumber from './components/voteNumber/index'
 import Votingrewards from './components/Votingrewards/index'
 import Voteresult from './components/Voteresult/index'
-import Tlogin from './components/login/index'
-import Tlogout from './components/logout/index'
+// import Tlogin from './components/login/index'
+// import Tlogout from './components/logout/index'
 import { querysomething } from './service'
 import styles from './index.less';
 const { TabPane } = Tabs;
