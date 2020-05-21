@@ -92,7 +92,7 @@ const Chklog = ({ ...props }) => {
     const [depsValue, setdepsValue] = useState('a');
     return <div>
         <Card bordered={true}>
-            <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination={true} columns={columns} api='/api/asset/chk' method='POST' />
+            <HooksTable usetimesearch={true} deps={[depsValue]} depsProps={{ depsValue }} usePagination={true} columns={columns} api='/api/asset/chk' method='POST' />
         </Card>
     </div >
 

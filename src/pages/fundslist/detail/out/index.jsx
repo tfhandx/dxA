@@ -26,6 +26,7 @@ const ChkDetail = ({ ...props }) => {
                 <Card bordered={true}>
                     <Descriptions layout="vertical" title="" style={{ marginBottom: 32 }}>
                         <Descriptions.Item label="现金账户余额(DX)">{currency(200000000, true)}</Descriptions.Item>
+                        <Descriptions.Item label="现金账户余额(DX)">{currency(200000000, true)}</Descriptions.Item>
                     </Descriptions>
                 </Card>
             </Spin>

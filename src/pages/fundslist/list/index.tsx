@@ -1,7 +1,9 @@
 import { DownOutlined, PlusOutlined } from '@ant-design/icons';
 import { Button, Divider, Dropdown, Menu, message, Radio } from 'antd';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, Suspense } from 'react';
+import { GridContent } from '@ant-design/pro-layout';
 import { history } from 'umi';
+import PageLoading from './components/PageLoading';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import ProTable, { ProColumns, ActionType } from '@ant-design/pro-table';
 import CreateForm from './components/CreateForm';
@@ -10,6 +12,7 @@ import { TableListItem } from './data.d';
 import { queryRule, updateRule, addRule, removeRule } from './service';
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
+const IntroduceRow = React.lazy(() => import('./components/IntroduceRow'));
 /**
  * 添加节点
  * @param fields
@@ -191,6 +194,15 @@ const UserList: React.FC<{}> = () => {
 
   return (
     <PageHeaderWrapper>
+      <GridContent>
+        <React.Fragment>
+          <Suspense fallback={<PageLoading />}>
+            <IntroduceRow loading={false} visitData={[]} />
+          </Suspense>
+        </React.Fragment>
+
+      </GridContent>
+
       <ProTable<TableListItem>
         headerTitle="查询表格"
         actionRef={actionRef}

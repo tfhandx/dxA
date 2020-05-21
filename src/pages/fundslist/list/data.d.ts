@@ -35,3 +35,8 @@ export interface TableListParams {
   pageSize?: number;
   currentPage?: number;
 }
+
+export interface VisitDataType {
+  x: string;
+  y: number;
+}
