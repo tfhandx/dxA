@@ -265,6 +265,18 @@ export default defineConfig({
                       path: '/fundslist/detail/in',
                       component: './fundslist/detail/in',
                     },
+                    {//提现
+                      name: 'detail-withdraw',
+                      icon: 'smile',
+                      path: '/fundslist/detail/withdraw',
+                      component: './fundslist/detail/withdraw',
+                    },
+                    {//充值
+                      name: 'detail-recharge',
+                      icon: 'smile',
+                      path: '/fundslist/detail/recharge',
+                      component: './fundslist/detail/recharge',
+                    },
                   ],
                 },
               ],

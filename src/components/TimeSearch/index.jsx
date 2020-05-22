@@ -78,7 +78,9 @@ const TimeSearch = ({
         ]
         : [moment(startTime), moment(endTime).add(oneDay, "milliseconds")]
     );
-  }, [rangePickerValue, startTime, endTime]);
+  }, [rangePickerValue,
+    startTime, endTime
+  ]);
   // useEffect(() => {
   //     sentData(offsetOfWindow > 750 ? rangePickerValue : [moment(startTime), moment(endTime)]);
   // }, [])
