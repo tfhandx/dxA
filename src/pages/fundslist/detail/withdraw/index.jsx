@@ -5,11 +5,12 @@ import { history } from 'umi';
 import { currency } from '@/utils/number'
 import { Prompt } from 'umi';
 import { Button, Descriptions, Card, Spin, Tabs } from 'antd'
-import Chklog from './components/login/index'
+import Savinglog from './components/login/index'
+import DashboardItems from '@/components/dashboard/index'
 import { querysomething } from './service'
 import styles from './index.less';
 const { TabPane } = Tabs;
-const ChkDetail = ({ ...props }) => {
+const SavingDetail = ({ ...props }) => {
     const { location: { query: { id: uid } } } = props
     const [type, setType] = useState('transaction');
     const { state, toggle, setTrue, setFalse } = useBoolean(true);
@@ -20,20 +21,22 @@ const ChkDetail = ({ ...props }) => {
     const { data, error, loading } = useRequest(querysomething)
     console.log('history.location.query.id', history.location.query.id)
     return <div>
-        <Card bordered={false} >
-            <PageHeaderWrapper />
-            <Spin spinning={loading}>
-                <Card bordered={true}>
-                    <Descriptions layout="vertical" title="" style={{ marginBottom: 32 }}>
-                        <Descriptions.Item label="现金账户余额(DX)">{currency(200000000, true)}</Descriptions.Item>
-                        <Descriptions.Item label="现金账户余额(DX)">{currency(200000000, true)}</Descriptions.Item>
-                    </Descriptions>
-                </Card>
-            </Spin>
-            <Chklog />
-        </Card>
+        {/* <Card bordered={false} > */}
+        <PageHeaderWrapper />
+        <div style={{ marginTop: '30px' }}></div>
+        <Spin spinning={loading}>
+            {/* <Card bordered={true}>
+                <Descriptions layout="vertical" title="" style={{ marginBottom: 32 }}>
+                    <Descriptions.Item label="现金账户余额(DX)">{currency(200000000, true)}</Descriptions.Item>
+                </Descriptions>
+            </Card> */}
+            <DashboardItems ></DashboardItems>
+            <Card bordered={false}>
+                <Savinglog />
+            </Card>
+        </Spin>
     </div >
 
 
 }
-export default ChkDetail;
+export default SavingDetail;

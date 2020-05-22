@@ -66,7 +66,7 @@ const Tlogout = ({ ...props }) => {
     const [depsValue, setdepsValue] = useState('a');
     return <div>
         <Card bordered={true}>
-            <HooksTable usetimesearch={true} deps={[depsValue]} depsProps={{ depsValue }} usePagination={true} columns={columns} api='/api/miner/withdraw-order' />
+            <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination={true} columns={columns} api='/api/miner/withdraw-order' />
         </Card>
     </div >
 

@@ -7,6 +7,76 @@ import { Button, Descriptions, Card, Spin, Divider } from 'antd'
 import { querysomething } from './service'
 import { strInsert } from '@/utils/utils'
 import HooksTable from '@/components/hooksTable/index'
+import {
+    SchemaForm,
+    SchemaMarkupField as Field,
+    FormButtonGroup,
+    Submit,
+    Reset
+} from '@formily/antd' // 或者 @formily/next
+import {
+    Input,
+    Radio,
+    Checkbox,
+    Select,
+    DatePicker,
+    NumberPicker,
+    TimePicker,
+    Upload,
+    Switch,
+    Range,
+    Transfer,
+    Rating,
+    FormItemGrid
+} from '@formily/antd-components' // 或者@formily/next-components
+import 'antd/dist/antd.css'
+
+const components = {
+    Input,
+    Radio: Radio.Group,
+    Checkbox: Checkbox.Group,
+    TextArea: Input.TextArea,
+    NumberPicker,
+    Select,
+    Switch,
+    DatePicker,
+    DateRangePicker: DatePicker.RangePicker,
+    YearPicker: DatePicker.YearPicker,
+    MonthPicker: DatePicker.MonthPicker,
+    WeekPicker: DatePicker.WeekPicker,
+    TimePicker,
+    TimeRangePicker: TimePicker.RangePicker,
+    Upload,
+    Range,
+    Rating,
+    Transfer
+}
+const getInitialValues = () => {
+    return new Promise(reslove => {
+        setTimeout(() => {
+            reslove({
+                daterange: ['2018-12-19', '2018-12-19'],
+                string: 'this is string',
+                radio: '2',
+                checkbox: ['2', '3', '4'],
+                textarea:
+                    'this is long text.this is long text.this is long text.this is long text.this is long text.',
+                rating: 3,
+                transfer: [1, 2],
+                range: 384,
+                date: '2020-02-20',
+                month: '2020-08',
+                year: '2023',
+                time: '22:29:53',
+                timerange: ['9:00:00', '18:00:00'],
+                week: '2020-9th',
+                number: 123,
+                boolean: true,
+                select: '2'
+            })
+        }, 1000)
+    })
+}
 import styles from './index.less';
 const typeName = (type) => {
     switch (type) {
@@ -88,14 +158,84 @@ const columns = [
         }
     },
 ]
-const Chklog = ({ ...props }) => {
-    const [depsValue, setdepsValue] = useState('a');
+const Savinglog = ({ ...props }) => {
+    const [initialValues, setIntialValues] = useState({})
+    useEffect(() => {
+        getInitialValues().then(initialValues => {
+            setIntialValues(initialValues)
+        })
+    }, [])
+    // const [depsValue, setdepsValue] = useState({});
     return <div>
+        <Card>
+            <SchemaForm
+                initialValues={initialValues}
+                labelCol={5}
+                onSubmit={(values) => {
+                    console.log('values', values)
+                    setIntialValues(values)
+                }}
+                onChange={(values) => {
+                    console.log('values', values)
+                    setIntialValues(values)
+                }}
+                editable={true}
+                wrapperCol={19}
+                components={components}>
+                <FormItemGrid gutter={20}>
+                    <Field type="string" title="String" name="string" x-component="Input" />
+                    <Field
+                        type="string"
+                        enum={['1', '2', '3', '4']}
+                        title="Radio"
+                        name="radio"
+                        x-component="Radio"
+                    />
+                </FormItemGrid>
+                <FormItemGrid gutter={20} cols={[12, 12]}>
+                    <Field
+                        type="string"
+                        enum={['1', '2', '3', '4']}
+                        title="Select"
+                        name="select2"
+                        x-component="Select"
+                    />
+                    <Field
+                        type="string"
+                        enum={['1', '2', '3', '4']}
+                        title="Checkbox 2"
+                        name="checkbox"
+                        x-component="Checkbox"
+                    />
+                </FormItemGrid>
+                <FormItemGrid gutter={20} cols={[12, 12]}>
+                    <Field
+                        type="string"
+                        enum={['1', '2', '3', '4']}
+                        title="Select3"
+                        name="select"
+                        x-component="Select"
+                    />
+                    <Field
+                        type="string"
+                        enum={['1', '2', '3', '4']}
+                        title="Checkbox3"
+                        name="checkbox"
+                        x-component="Checkbox"
+                    />
+                </FormItemGrid>
+                <FormButtonGroup offset={5} style={{ minWidth: 150 }}>
+                    <Submit>查询</Submit>
+                    <Reset>重置</Reset>
+                </FormButtonGroup>
+            </SchemaForm>
+        </Card>
+
         <Card bordered={true}>
-            <HooksTable usetimesearch={true} deps={[depsValue]} depsProps={{ depsValue }} usePagination={true} columns={columns} api='/api/asset/chk' method='POST' />
+            <HooksTable usetimesearch={true} deps={[initialValues]} depsProps={initialValues} usePagination={true} columns={columns} api='/api/asset/savings' method='POST' />
         </Card>
     </div >
 
 
 }
-export default Chklog;
+export default Savinglog;
