@@ -80,6 +80,11 @@ const getProfileBasicData = {
   basicGoods,
   basicProgress,
 };
+// return new Promise((resolve,reject)=>{
+//   setTimeout(()=>{
+//     resolve(getProfileBasicData)
+//   },300)
+// })
 
 export default {
   'GET  /api/profile/basic': getProfileBasicData,

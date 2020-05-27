@@ -9,6 +9,7 @@ export default defineConfig({
   history: {
     type: 'hash',
   },
+  dynamicImport: {},
   dva: {
     hmr: true,
   },
