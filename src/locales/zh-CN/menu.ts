@@ -75,7 +75,16 @@ export default {
   'menu.fundslist.detail.detail-basic': '单个用户资金详情',
   'menu.fundslist.detail.detail-withdraw': '提币',
   'menu.fundslist.detail.detail-recharge': '充币',
+  //用户权限管理
   'menu.authority': '权限管理',
   'menu.authority-create': '添加管理员',
-
+  //管理员模块
+  'menu.admin.verify': '审核管理',
+  'menu.admin.verify.list': '审核列表',
+  'menu.admin.verify.detail': '审核编辑',
+  //公告管理模块
+  'menu.admin.announcelist': '公告管理',
+  'menu.admin.announcelist.list': '公告查询',
+  'menu.admin.announcelist.detail': '公告详情',
+  'menu.admin.announcelist.edit': '公告编辑',
 };

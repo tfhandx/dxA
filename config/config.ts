@@ -135,6 +135,61 @@ export default defineConfig({
                 },
               ],
             },
+            //管理员部分
+            {
+              path: '/admin',
+              name: 'admin',
+              icon: 'dashboard',
+              // authority: ['admin'],
+              routes: [
+                {
+                  name: 'verify',
+                  icon: 'smile',
+                  path: '/admin/verify',
+                  // component: './admin/verify',
+                  routes: [
+                    {
+                      name: 'list',
+                      icon: 'smile',
+                      path: '/admin/verify/list',
+                      component: './admin/verify/list',
+                    },
+                    {
+                      name: 'detail',
+                      icon: 'smile',
+                      path: '/admin/verify/detail',
+                      component: './admin/verify/detail',
+                    },
+                  ],
+                },
+                {
+                  name: 'announcelist',
+                  icon: 'smile',
+                  path: '/admin/announcelist',
+                  // component: './admin/announce',
+                  routes: [
+                    {
+                      name: 'list',
+                      icon: 'smile',
+                      path: '/admin/announcelist/list',
+                      component: './admin/announcelist/list',
+                    },
+                    {
+                      name: 'detail',
+                      icon: 'smile',
+                      path: '/admin/announcelist/detail',
+                      component: './admin/announcelist/detail',
+                    },
+                    {
+                      name: 'edit',
+                      icon: 'smile',
+                      path: '/admin/announcelist/edit',
+                      component: './admin/announcelist/edit',
+                    },
+                  ],
+                },
+              ],
+            },
             // {
             //   name: 'formily',
             //   authority: ['admin',],

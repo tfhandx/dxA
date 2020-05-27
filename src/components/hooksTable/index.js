@@ -45,12 +45,13 @@ const HooksTable = (props) => {
     async function getRule(data) {
         return request(Api, {
             method: method,
-            data: {
+            [method.toLowerCase() === 'get' ? 'params' : 'data']: {
                 ...data,
             },
         });
     }
     const queryListData = (data = {}) => {
+        console.log('datadaya', data)
         return getRule(data)
         // return new Promise((resolve, reject) => {
         //     setTimeout(() => {
