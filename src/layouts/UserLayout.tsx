@@ -88,7 +88,7 @@ const UserLayout: React.FC<UserLayoutProps> = (props) => {
               blankTarget: true,
             },
             {
-              key: 'boke',
+              key: 'boke2',
               title: 'DX博客',
               href: 'https://blog.dxchain.com/',
               blankTarget: true,

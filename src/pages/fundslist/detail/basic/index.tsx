@@ -323,7 +323,7 @@ class Basic extends Component<BasicProps, BasicState> {
             columns={goodsColumns}
             rowKey="id"
           /> */}
-          <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination={true} columns={columns} api='/api/miner/getall' method='POST' />
+          <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination={true} columns={columns} api='/api/miner/getall' method='GET' />
         </Card>
       </PageHeaderWrapper>
     );

@@ -90,7 +90,7 @@ const defaultFooterDom = (
         blankTarget: true,
       },
       {
-        key: 'boke',
+        key: 'bok',
         title: 'DX博客',
         href: 'https://blog.dxchain.com/',
         blankTarget: true,
