@@ -4,7 +4,7 @@ import React from 'react'
 import querystring from 'querystring'
 import storage from '@/utils/storage'
 import { Modal } from 'antd'
-import history from 'umi'
+import {history} from 'umi'
 function getPageQuery() {
   return querystring.parse(window.location.href.split('?')[1]);
 }
