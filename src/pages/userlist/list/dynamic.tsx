@@ -105,6 +105,20 @@ const UserList: React.FC<{}> = () => {
       ),
     },
     {
+      title: 'key',
+      dataIndex: 'key',
+      render: (_, record) => (
+        <>
+          <a
+
+          >
+            {_}
+          </a>
+          {/* <a href="">订阅警报</a> */}
+        </>
+      ),
+    },
+    {
       title: '电话',
       dataIndex: 'desc',
       valueType: 'text',

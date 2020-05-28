@@ -1,10 +1,8 @@
 import React, { Component, useState, useEffect } from 'react'
 import './style.less'
 import { Spin, Modal, Button, message, Radio, Form } from 'antd';
-// import { Form } from '@ant-design/compatible';
 import { history } from 'umi';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import '@ant-design/compatible/assets/index.css';
 import request from '@/utils/request';
 import { useRequest } from '@umijs/hooks';
 import Goback from '@/components/Goback/index'

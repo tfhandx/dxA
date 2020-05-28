@@ -10,6 +10,18 @@ export default defineConfig({
     type: 'hash',
   },
   dynamicImport: {},
+  externals: {
+    react: 'window.React',
+    ['react-dom']: 'window.ReactDOM',
+    mobx: 'window.Mobx',
+
+  },
+  scripts: [
+    'https://unpkg.com/react@16/umd/react.production.min.js',
+    'https://unpkg.com/react-dom@16/umd/react-dom.production.min.js',
+    'https://cdnjs.cloudflare.com/ajax/libs/mobx/5.15.4/mobx.umd.min.js'
+
+  ],
   dva: {
     hmr: true,
   },
