@@ -118,7 +118,7 @@ const HooksTable = (props) => {
             // manual: true,
             // pollingInterval:10000,
             formatResult: (res) => {
-                const data = res.data.list || [];
+                const data = res.data && Object.prototype.hasOwnProperty.call(res.data, 'list') && res.data.list || [];
                 const total = res.data.total || 0;
                 return {
                     list: data,

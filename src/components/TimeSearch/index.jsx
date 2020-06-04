@@ -12,7 +12,7 @@ import enUS from "antd-mobile/lib/calendar/locale/en_US";
 import zhCN from "antd-mobile/lib/calendar/locale/zh_CN";
 import { DatePicker } from "antd";
 import moment from "moment";
-import { Calendar, List, Switch, Calenda } from "antd-mobile";
+import { Calendar, List, Switch } from "antd-mobile";
 import { getTimeDistance } from "./utils/utils";
 import { useWindowViewPortChange } from "@/utils/utils";
 import "./index.less";

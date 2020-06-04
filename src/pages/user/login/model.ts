@@ -65,6 +65,13 @@ const Model: ModelType = {
         });
         message.success('登录成功！');
         storage.set('user', response.data)
+        if (Array.isArray(response.data.role) && new Set(response.data.role).has(1)) {
+          setAuthority(['admin'])
+        } else if (Array.isArray(response.data.role) && new Set(response.data.role).has(-1)) {
+          setAuthority(['user'])
+        } else {
+          setAuthority([])
+        }
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params as { redirect: string };
@@ -84,7 +91,7 @@ const Model: ModelType = {
       }
     },
 
-    *getCaptcha({ payload }, { call }) {
+    * getCaptcha({ payload }, { call }) {
       yield call(getFakeCaptcha, payload);
     },
   },
