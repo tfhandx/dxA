@@ -8,7 +8,7 @@ import { notification } from 'antd';
 import storage from '@/utils/storage'
 // const baseUrl = process.env.REACT_APP_ENV === 'dev' ? 'https://shequ-test.dxchain.com' : process.env.REACT_APP_ENV === 'pre' ? "https://shequ.dxchain.com" : ''
 // const baseUrl = process.env.REACT_APP_ENV === 'dev' ? '' : process.env.REACT_APP_ENV === 'pre' ? "https://shequ.dxchain.com" : ''
-const baseUrl = process.env.REACT_APP_ENV === 'dev' ? '' : process.env.REACT_APP_ENV === 'pre' ? "https://shequ-test.dxchain.com" : ''
+const baseUrl = process.env.REACT_APP_ENV === 'dev' ? 'https://shequ-test.dxchain.com' : process.env.REACT_APP_ENV === 'pre' ? "https://shequ-test.dxchain.com" : ''
 
 const codeMessage = {
   200: '服务器成功返回请求的数据。',

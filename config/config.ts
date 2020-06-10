@@ -392,6 +392,20 @@ export default defineConfig({
             //         },
             //       ],
             //     },
+            {
+              path: '/list',
+              authority: ['admin'],
+              icon: 'table',
+              name: 'list',
+              routes: [
+                {
+                  path: '/list/search',
+                  name: 'list-search',
+                  component: './list/search',
+
+                },
+              ]
+            },
             //     {
             //       name: 'table-list',
             //       icon: 'smile',
@@ -586,7 +600,7 @@ export default defineConfig({
   chainWebpack: function (config, { webpack }) {
     config.merge({
       optimization: {
-        minimize: true,
+        // minimize: true,
         splitChunks: {
           chunks: 'async',
           minSize: 30000,

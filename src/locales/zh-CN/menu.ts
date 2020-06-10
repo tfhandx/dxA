@@ -87,4 +87,7 @@ export default {
   'menu.admin.announcelist.list': '公告查询',
   'menu.admin.announcelist.detail': '公告详情',
   'menu.admin.announcelist.edit': '公告编辑',
+  //查询滚动列表
+  'menu.list.list-search': '查询列表',
+
 };
