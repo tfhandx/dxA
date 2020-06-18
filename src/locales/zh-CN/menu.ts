@@ -82,6 +82,10 @@ export default {
   'menu.admin.verify': '审核管理',
   'menu.admin.verify.list': '审核列表',
   'menu.admin.verify.detail': '审核编辑',
+  //审核
+  'menu.admin.examineVote': '审核管理',
+  'menu.admin.examineVote.list': '审核列表',
+  'menu.admin.examineVote.detail': '审核编辑',
   //公告管理模块
   'menu.admin.announcelist': '公告管理',
   'menu.admin.announcelist.list': '公告查询',

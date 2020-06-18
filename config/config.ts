@@ -234,6 +234,28 @@ export default defineConfig({
                   ],
                 },
                 {
+                  name: 'examineVote',
+                  icon: 'smile',
+                  path: '/admin/examineVote',
+                  // component: './admin/verify',
+                  routes: [
+                    {
+                      name: 'list',
+                      icon: 'smile',
+                      path: '/admin/examineVote/list',
+                      component: isDynamic ? './admin/examineVote/list' : './admin/examineVote/list/dynamic',
+                    },
+                    {
+                      name: 'detail',
+                      icon: 'smile',
+                      path: '/admin/examineVote/detail',
+                      component: isDynamic
+                        ? './admin/examineVote/details'
+                        : './admin/examineVote/details/dynamic',
+                    },
+                  ],
+                },
+                {
                   name: 'announcelist',
                   icon: 'smile',
                   path: '/admin/announcelist',

@@ -96,5 +96,9 @@ let api = {
     minnerDeposit: '/api/miner/deposit-order',//矿机充值记录
     minnerWithdraw: '/api/miner/withdraw-order',//矿机提现记录
     profilePhone: '/api/profile/verify/phone', //重置密码短信
+    candidateGetall: '/api/review/candidate/getall', //审核投票列表查询
+    candidateGet: '/api/review/candidate/get', // 审核投票详情
+    candidateCommit: '/api/review/candidate/commit', // 提交审批投票
+    candidateOnline: '/api/review/candidate/online', //节点上下线
 }
 export default api
