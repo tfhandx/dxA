@@ -70,7 +70,7 @@ const Model: ModelType = {
         } else if (Array.isArray(response.data.role) && new Set(response.data.role).has(-1)) {
           setAuthority(['user'])
         } else {
-          setAuthority([])
+          setAuthority(['normal'])
         }
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();

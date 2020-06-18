@@ -26,10 +26,21 @@ const ViewportProvider = ({ children }) => {
     //     }
     // }, []);
     useEffect(() => {
+        var docEl = document.documentElement;
+        var clientWidth = docEl.clientWidth;
+        if (!clientWidth) return;
+        if (clientWidth >= 750) {
+            docEl.style.fontSize = '100px';
+        } else {
+            docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+            console.log(' docEl.style.fontSize', docEl.style.fontSize)
+            //如果是苹果五为设计图则换为640
+        }
         let resizeEvt = 'onorientationchange' in window ? 'onorientationchange' : 'resize';
         const handleFun = () => {
-            var docEl = document.documentElement;
-            var clientWidth = docEl.clientWidth;
+            console.log(' docEl.style.fontSize', docEl.style.fontSize)
+            // var docEl = document.documentElement;
+            // var clientWidth = docEl.clientWidth;
             setWidth(window.clientWidth)
             setHeight(window.clientHeight)
             if (!clientWidth) return;
@@ -37,6 +48,8 @@ const ViewportProvider = ({ children }) => {
                 docEl.style.fontSize = '100px';
             } else {
                 docEl.style.fontSize = 100 * (clientWidth / 750) + 'px';
+                console.log(' docEl.style.fontSize', docEl.style.fontSize)
+                //如果是苹果五为设计图则换为640
             }
         }
         if (!document.addEventListener) return;

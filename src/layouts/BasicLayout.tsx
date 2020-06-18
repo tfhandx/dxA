@@ -17,7 +17,7 @@ import { Result, Button, Divider } from 'antd';
 import Authorized from '@/utils/Authorized';
 // import Authorized from '@/pages/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
-import useViewport from '@/components/useViewport/index.jsx'
+// import useViewport from '@/components/useViewport/index.jsx'
 import { ConnectState } from '@/models/connect';
 import { getAuthorityFromRouter } from '@/utils/utils';
 import logo from '../assets/logodx.svg';
@@ -157,65 +157,65 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   console.log('isLogined', isLogin)
   return (
     <>
-      <useViewport.ViewportProvider>
-        <ProLayout
-          logo={'https://shequ-test.dxapp.net/dxAdmin/camel.png'}
-          formatMessage={formatMessage}
-          // title='dx'
-          menuHeaderRender={(logoDom, titleDom) => (
-            <Link to="/">
-              {logoDom}
-              {/* {titleDom} */}
-              {collapsed ? null : <h1>DxAdmin</h1>}
-            </Link>
-          )}
-          onCollapse={handleMenuCollapse}
-          menuItemRender={(menuItemProps, defaultDom) => {
-            if (menuItemProps.isUrl || menuItemProps.children || !menuItemProps.path) {
-              return defaultDom;
-            }
-
-            return <Link to={menuItemProps.path}>{defaultDom}</Link>;
-          }}
-          breadcrumbRender={(routers = []) => [
-            {
-              path: '/',
-              breadcrumbName: formatMessage({
-                id: 'menu.home',
-              }),
-            },
-            ...routers,
-          ]}
-          itemRender={(route, params, routes, paths) => {
-            const first = routes.indexOf(route) === 0;
-            return first ? (
-              <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
-            ) : (
-                <span>{route.breadcrumbName}</span>
-              );
-          }}
-          footerRender={() => defaultFooterDom}
-          menuDataRender={menuDataRender}
-          rightContentRender={() => <RightContent />}
-          {...props}
-          // title={() => <Title></Title>}
-          {...settings}
-        >
-          <Authorized authority={authorized.authority}
-            noMatch={isLogin ? <Redirect to="/exception/403" /> : <Redirect to="/user/login" />}>
-            {children}
-          </Authorized>
-        </ProLayout>
-        <SettingDrawer
-          settings={settings}
-          onSettingChange={(config) =>
-            dispatch({
-              type: 'settings/changeSetting',
-              payload: config,
-            })
+      {/* <useViewport.ViewportProvider> */}
+      <ProLayout
+        logo={'https://shequ-test.dxapp.net/dxAdmin/camel.png'}
+        formatMessage={formatMessage}
+        // title='dx'
+        menuHeaderRender={(logoDom, titleDom) => (
+          <Link to="/">
+            {logoDom}
+            {/* {titleDom} */}
+            {collapsed ? null : <h1>DxAdmin</h1>}
+          </Link>
+        )}
+        onCollapse={handleMenuCollapse}
+        menuItemRender={(menuItemProps, defaultDom) => {
+          if (menuItemProps.isUrl || menuItemProps.children || !menuItemProps.path) {
+            return defaultDom;
           }
-        />
-      </useViewport.ViewportProvider>
+
+          return <Link to={menuItemProps.path}>{defaultDom}</Link>;
+        }}
+        breadcrumbRender={(routers = []) => [
+          {
+            path: '/',
+            breadcrumbName: formatMessage({
+              id: 'menu.home',
+            }),
+          },
+          ...routers,
+        ]}
+        itemRender={(route, params, routes, paths) => {
+          const first = routes.indexOf(route) === 0;
+          return first ? (
+            <Link to={paths.join('/')}>{route.breadcrumbName}</Link>
+          ) : (
+              <span>{route.breadcrumbName}</span>
+            );
+        }}
+        footerRender={() => defaultFooterDom}
+        menuDataRender={menuDataRender}
+        rightContentRender={() => <RightContent />}
+        {...props}
+        // title={() => <Title></Title>}
+        {...settings}
+      >
+        <Authorized authority={authorized.authority}
+          noMatch={isLogin ? <Redirect to="/exception/403" /> : <Redirect to="/user/login" />}>
+          {children}
+        </Authorized>
+      </ProLayout>
+      <SettingDrawer
+        settings={settings}
+        onSettingChange={(config) =>
+          dispatch({
+            type: 'settings/changeSetting',
+            payload: config,
+          })
+        }
+      />
+      {/* </useViewport.ViewportProvider> */}
     </>
   );
 };

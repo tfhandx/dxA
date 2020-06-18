@@ -1,3 +1,4 @@
+const isNewapi = false
 let api = {
     assetSummary: '/api/asset/summary', // 资产汇总
     assetDetail: '/api/asset/detail', // 资产详情
