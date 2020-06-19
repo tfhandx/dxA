@@ -4,10 +4,11 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { history } from 'umi';
 import { currency } from '@/utils/number'
 import { Button, Descriptions, Card, Spin, Tabs, Divider } from 'antd'
-import { querysomething } from './service'
 import { strInsert } from '@/utils/utils'
 import HooksTable from '@/components/hooksTable/index'
+import { querysomething } from './service'
 import styles from './index.less';
+
 const columns = [
     {
         title: '周期',
@@ -87,7 +88,7 @@ const Votingrewards = ({ ...props }) => {
     const { data, error, loading } = useRequest(querysomething)
     return <div>
         <Spin spinning={loading}>
-            <Card bordered={true} style={{ marginBottom: 32 }}>
+            <Card bordered style={{ marginBottom: 32 }}>
                 <Descriptions layout="vertical" title="" style={{ marginBottom: 32 }}>
                     <Descriptions.Item label="累计出块(DX)">{currency(200000000, true)}</Descriptions.Item>
                     <Descriptions.Item label="节点自身分配(DX)">{currency(100000000, true)}</Descriptions.Item>
@@ -96,8 +97,8 @@ const Votingrewards = ({ ...props }) => {
                 </Descriptions>
             </Card>
         </Spin>
-        <Card bordered={true} title='周期奖励详情'>
-            <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination={true} columns={columns} api='/api/supernode/reward' method='POST' />
+        <Card bordered title='周期奖励详情'>
+            <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination columns={columns} api='/api/supernode/reward' method='POST' />
         </Card>
     </div >
 

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Button, Carousel, Divider } from 'antd'
 import useViewport from '@/components/useViewport/index.jsx'
 import styles from './index.less'
+
 const DxDialog = () => {
     const [showBottom, setShowBottom] = useState(false)
     const { width, height, isIframe } = useViewport()
@@ -28,7 +29,7 @@ const DxDialog = () => {
                 className={styles.carousel}
             >
                 <Carousel
-                    dotPosition={'right'}
+                    dotPosition="right"
                     autoplay
                     dots={false}
                 >

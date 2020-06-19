@@ -1,14 +1,15 @@
 import axios from 'axios'
-import { baseUrl, offerUrl } from './index'
 import React from 'react'
 import querystring from 'querystring'
 import storage from '@/utils/storage'
 import { Modal } from 'antd'
 import {history} from 'umi'
+import { baseUrl, offerUrl } from './index'
+
 function getPageQuery() {
   return querystring.parse(window.location.href.split('?')[1]);
 }
-let fetcher = axios.create({
+const fetcher = axios.create({
   method: 'post',
   baseURL: baseUrl,
   withCredentials: false,
@@ -21,20 +22,20 @@ let fetcher = axios.create({
 
 fetcher.interceptors.request.use(function (config) {
   const token = storage.get('user') && storage.get('user').token
-  config.headers.common['Authorization'] = 'Bearer ' + token;
+  config.headers.common.Authorization = `Bearer ${  token}`;
   return config;
 }, function (error) {
   return Promise.reject(error)
 })
 
-let errModal = []
+const errModal = []
 
 fetcher.interceptors.response.use(function (response) {
-  let resData = response.data
-  let message = resData.message
+  const resData = response.data
+  const {message} = resData
   if (resData.code) {
     if (message) {
-      let errCode = resData.code
+      const errCode = resData.code
       switch (errCode) {
         case 401:
           if (window.location.pathname !== '/' && window.location.pathname !== '/signin' && errModal.length === 0) {
@@ -110,7 +111,7 @@ fetcher.interceptors.response.use(function (response) {
 function mockInterceptors(url) {
   let result = {
     mocked: false,
-    url: url
+    url
   }
   // 判断是否为mock形式
   if (typeof url === 'object') {
@@ -136,7 +137,7 @@ function mockInterceptors(url) {
   } else { // 兼容老接口，非mock形式
     result = {
       mocked: false,
-      url: url
+      url
     }
   }
 
@@ -145,38 +146,38 @@ function mockInterceptors(url) {
 export const get = (url, params) => {
   params = params || {}
   // params.t = new Date().getTime()
-  let mockInfo = mockInterceptors(url)
+  const mockInfo = mockInterceptors(url)
   if (mockInfo.mocked) {
     return mockInfo.mock
-  } else {
+  } 
     return fetcher.get(mockInfo.url, { params })
-  }
+  
 }
 export const post = (url, params) => {
   console.log('axios.name', axios.name);
-  let mockInfo = mockInterceptors(url)
+  const mockInfo = mockInterceptors(url)
   if (mockInfo.mocked) {
     return mockInfo.mock
-  } else {
+  } 
     return fetcher.post(mockInfo.url, params)
-  }
+  
 }
 
 export const put = (url, params) => {
-  let mockInfo = mockInterceptors(url)
+  const mockInfo = mockInterceptors(url)
   if (mockInfo.mocked) {
     return mockInfo.mock
-  } else {
+  } 
     return fetcher.put(mockInfo.url, params)
-  }
+  
 }
 
 export const del = (url, params) => {
-  let mockInfo = mockInterceptors(url)
+  const mockInfo = mockInterceptors(url)
   if (mockInfo.mocked) {
     return mockInfo.mock
-  } else {
+  } 
     return fetcher.delete(mockInfo.url, { params })
-  }
+  
 }
 export default post

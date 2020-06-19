@@ -3,10 +3,10 @@ import './style.less'
 import { Tabs, Form, Button, Row, Col, Dropdown, Menu, Pagination, Checkbox, Empty, Spin, Card } from 'antd';
 import { EllipsisOutlined } from '@ant-design/icons';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import store from './store.js'
 import { history } from 'umi';
 import storage from '@/utils/storage'
 import { observer } from 'mobx-react'
+import store from './store.js'
 
 const { TabPane } = Tabs;
 const MenuItem = Menu.Item
@@ -20,7 +20,7 @@ class AnnounceList extends Component {
   };
 
   componentDidMount = () => {
-    let num = storage.get('user') && storage.get('user').role && storage.get('user').role.indexOf(1) !== -1 ? 1 : 0
+    const num = storage.get('user') && storage.get('user').role && storage.get('user').role.indexOf(1) !== -1 ? 1 : 0
     console.log('storage', JSON.parse(localStorage.getItem('user')))
     // num = [1].indexOf(1) !== -1 ? 1 : 0
     this.setState({
@@ -29,6 +29,7 @@ class AnnounceList extends Component {
       store.queryAnnounce(this.state.num, null)
     })
   }
+
   componentWillUnmount = () => {
     store.setData()
   }
@@ -47,9 +48,11 @@ class AnnounceList extends Component {
   onShowSizeChange = (current, size) => {
     store.onShowSizeChange(current, size, this.state.num)
   }
+
   delList = (id) => {
     store.delList(id, this.state.num)
   }
+
   editList = (id) => {
     // history.push({
     //   pathname: pathname,
@@ -59,6 +62,7 @@ class AnnounceList extends Component {
     // });
     history.push(`/admin/announcelist/edit?id=${id}`)
   }
+
   handleNew = () => {
     history.push(`/admin/announcelist/edit?id=new`)
   }
@@ -101,12 +105,9 @@ class AnnounceList extends Component {
             ]} />
           <div>
             <Tabs defaultActiveKey="all" onChange={this.callback}>
-              <TabPane tab="全部" key="all">
-              </TabPane>
-              <TabPane tab="新功能" key="upgrade">
-              </TabPane>
-              <TabPane tab="活动公告" key="activity">
-              </TabPane>
+              <TabPane tab="全部" key="all" />
+              <TabPane tab="新功能" key="upgrade" />
+              <TabPane tab="活动公告" key="activity" />
             </Tabs>
           </div>
           <div>
@@ -186,7 +187,7 @@ class AnnounceList extends Component {
               defaultPageSize={6}
               current={pageInfo.pageIndex}
               onChange={this.onShowSizeChange}
-              size={'normal'} />
+              size="normal" />
           </div>
           {
             num === 1 && <div className="fl" style={{ marginTop: 50 }}>

@@ -6,20 +6,24 @@ import { message } from 'antd'
 class Stores {
 
   @observable loading = false // 查询条件
+
   @observable staffList = []
+
   @observable type = {}
+
   @observable subdata = {}
+
   @action('查询表哥') queryListData = async function () {
     this.staffList = []
     this.loading = true
-    let params = {
+    const params = {
       ...this.subdata
     }
     if (this.subdata.status && this.subdata.status === 'all') {
       delete params.status
     }
 
-    let res = await get(Api.candidateGetall, params)
+    const res = await get(Api.candidateGetall, params)
     if (res.data.code === 200) {
       runInAction(() => {
         this.loading = false
@@ -32,11 +36,11 @@ class Stores {
 
   @action('查询表哥') subOline = async function (value) {
     this.loading = true
-    let params = {
+    const params = {
       ...value
     }
 
-    let res = await post(Api.candidateOnline, params)
+    const res = await post(Api.candidateOnline, params)
     if (res.data.code === 200) {
       runInAction(() => {
         message.success('操作成功')
@@ -51,6 +55,7 @@ class Stores {
     this.subdata = value
     this.queryListData()
   }
+
   @action('重置') sentData = async (value) => {
     this.loading = false // 查询条件
     this.staffList = []

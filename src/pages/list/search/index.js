@@ -1,8 +1,9 @@
 import React from 'react'
-import MobileSearch from './mobile'
 import { Button } from 'antd'
+import MobileSearch from './mobile'
+
 const Search = () => {
-    return <MobileSearch></MobileSearch>
+    return <MobileSearch />
 
 }
 export default Search;

@@ -16,10 +16,14 @@ class Stores {
       id: 'activity'
     },
   ]
+
   @observable data = {
   }
+
   @observable loading = false
+
   @observable id = ''
+
   @action('方法描述') formQuery = async function (data, id) {
     this.id = id
     this.data = data
@@ -27,14 +31,14 @@ class Stores {
 
   @action('方法描述') addForm = async function (params) {
     this.loading = true
-    let data = {
+    const data = {
       data: {
         ...params,
         id: this.id !== '' ? this.id : null
       }
     }
-    let url = this.id === '' ? Api.announceAdd : Api.announceUpdate
-    let res = await post(url, data)
+    const url = this.id === '' ? Api.announceAdd : Api.announceUpdate
+    const res = await post(url, data)
     if (res.data.code === 200) {
       runInAction(() => {
         if (res.data.data.id) {

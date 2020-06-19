@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import './style.less'
 import { Spin, Modal, Button, Tabs, Table, Tag, Switch } from 'antd';
-import store from './store'
 import { history } from 'umi';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import moment from 'moment';
 import { currency } from '@/utils/number'
 import { observer } from 'mobx-react'
 import Goback from '@/components/Goback/index'
+import store from './store'
 
 const { TabPane } = Tabs;
 const dateFormat = 'YYYY-MM-DD';
@@ -110,6 +110,7 @@ class ExamineVote extends Component {
       },
     ]
   };
+
   componentDidMount = () => {
     store.tabChange({ status: this.state.status, type: this.state.type })
   }
@@ -117,6 +118,7 @@ class ExamineVote extends Component {
   componentWillUnmount = () => {
     store.sentData()
   }
+
   typeName = (type) => {
     switch (type) {
       case 0: return <Tag color='geekblue' key={type}>
@@ -141,7 +143,7 @@ class ExamineVote extends Component {
       let data = {}
       if (this.state.status === '4' || this.state.status === '5') {
         data = {
-          online: this.state.status === '4' ? true : false,
+          online: this.state.status === '4',
           type: this.state.type
         }
       } else {
@@ -155,7 +157,7 @@ class ExamineVote extends Component {
   }
 
   witchOnChange = (checked, e, op) => {
-    let data = {
+    const data = {
       online: checked,
       uid: op,
     }
@@ -175,7 +177,7 @@ class ExamineVote extends Component {
       let data = {}
       if (this.state.status === '4' || this.state.status === '5') {
         data = {
-          online: this.state.status === '4' ? true : false,
+          online: this.state.status === '4',
           type: this.state.type
         }
       } else {
@@ -195,30 +197,19 @@ class ExamineVote extends Component {
       <PageHeaderWrapper>
         <div className="examine-vote">
           <Tabs className="main-tabs" activeKey={type} onChange={this.onTypeChange} >
-            <TabPane tab='申请节点' key='apply'>
-            </TabPane>
-            <TabPane tab='修改节点' key='update'>
-            </TabPane>
-            <TabPane tab='取消节点' key='cancel'>
-            </TabPane>
-            <TabPane tab='恢复节点' key='reinstate'>
-            </TabPane>
+            <TabPane tab='申请节点' key='apply' />
+            <TabPane tab='修改节点' key='update' />
+            <TabPane tab='取消节点' key='cancel' />
+            <TabPane tab='恢复节点' key='reinstate' />
           </Tabs>
           <Tabs className="main-tabs" activeKey={status} onChange={this.onChange} type="card">
-            <TabPane tab='全部' key='all'>
-            </TabPane>
-            <TabPane tab='审核通过' key='passed'>
-            </TabPane>
-            <TabPane tab='待审核' key='init'>
-            </TabPane>
-            <TabPane tab='审核拒绝' key='rejected'>
-            </TabPane>
-            <TabPane tab='处理中' key='processing'>
-            </TabPane>
-            <TabPane tab='上线' key='4'>
-            </TabPane>
-            <TabPane tab='下线' key='5'>
-            </TabPane>
+            <TabPane tab='全部' key='all' />
+            <TabPane tab='审核通过' key='passed' />
+            <TabPane tab='待审核' key='init' />
+            <TabPane tab='审核拒绝' key='rejected' />
+            <TabPane tab='处理中' key='processing' />
+            <TabPane tab='上线' key='4' />
+            <TabPane tab='下线' key='5' />
           </Tabs>
           <Table
             scroll={

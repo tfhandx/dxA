@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useBoolean, useRequest } from '@umijs/hooks';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { history } from 'umi';
+import { history , Prompt } from 'umi';
 import { currency } from '@/utils/number'
-import { Prompt } from 'umi';
+
 import { Button, Descriptions, Card, Spin, Tabs, Tag, Switch } from 'antd'
 // import Savinglog from './components/login/index'
 import HooksTable from '@/components/hooksTable/index'
 import { querysomething } from './service'
 import styles from './index.less';
+
 const { TabPane } = Tabs;
 typeName = (type) => {
     switch (type) {
@@ -30,7 +31,7 @@ const onButton = (record) => {
     history.push(`/admin/verify/detail?uid=${record.uid}`)
 }
 const witchOnChange = (checked, e) => {
-    let data = {
+    const data = {
         online: checked,
         uid: e.target.value
     }
@@ -156,32 +157,21 @@ const SavingDetail = ({ ...props }) => {
                 </Tabs> */}
                 //新的审核
                 <Tabs className="main-tabs" activeKey={type} onChange={onTypeChange}>
-                    <TabPane tab='申请节点' key='apply'>
-                    </TabPane>
-                    <TabPane tab='修改节点' key='update'>
-                    </TabPane>
-                    <TabPane tab='取消节点' key='cancel'>
-                    </TabPane>
-                    <TabPane tab='恢复节点' key='reinstate'>
-                    </TabPane>
+                    <TabPane tab='申请节点' key='apply' />
+                    <TabPane tab='修改节点' key='update' />
+                    <TabPane tab='取消节点' key='cancel' />
+                    <TabPane tab='恢复节点' key='reinstate' />
                 </Tabs>
                 <Tabs className="main-tabs" activeKey={status} onChange={onChange}>
-                    <TabPane tab='全部' key='all'>
-                    </TabPane>
-                    <TabPane tab='审核通过' key='passed'>
-                    </TabPane>
-                    <TabPane tab='待审核' key='init'>
-                    </TabPane>
-                    <TabPane tab='审核拒绝' key='rejected'>
-                    </TabPane>
-                    <TabPane tab='处理中' key='processing'>
-                    </TabPane>
-                    <TabPane tab='上线' key='4'>
-                    </TabPane>
-                    <TabPane tab='下线' key='5'>
-                    </TabPane>
+                    <TabPane tab='全部' key='all' />
+                    <TabPane tab='审核通过' key='passed' />
+                    <TabPane tab='待审核' key='init' />
+                    <TabPane tab='审核拒绝' key='rejected' />
+                    <TabPane tab='处理中' key='processing' />
+                    <TabPane tab='上线' key='4' />
+                    <TabPane tab='下线' key='5' />
                 </Tabs>
-                <HooksTable deps={[type]} depsProps={type === 'all' ? {} : { status: (type === 'all' ? type : Number(type)) }} usePagination={true} columns={columns} api='/api/review/candidate/getall' method='GET' />
+                <HooksTable deps={[type]} depsProps={type === 'all' ? {} : { status: (type === 'all' ? type : Number(type)) }} usePagination columns={columns} api='/api/review/candidate/getall' method='GET' />
             </Card>
         </Card>
     </div >

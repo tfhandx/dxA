@@ -5,9 +5,9 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { history } from 'umi';
 import { currency } from '@/utils/number'
 import { Button, Descriptions, Card, Spin, Divider } from 'antd'
-import { querysomething } from './service'
 import { strInsert } from '@/utils/utils'
 import FormTableQuery from '@/components/useFormTableQuery/index'
+import { querysomething } from './service'
 import styles from './index.less';
 // const columns = [
 //     {
@@ -140,8 +140,8 @@ const Authority = ({ ...props }) => {
                 // <DropdownMenu key="more" />,
             ]
         }>
-            <Card bordered={true}>
-                <FormTableQuery columns={columns} method='POST' api='/api/asset/chk'></FormTableQuery>
+            <Card bordered>
+                <FormTableQuery columns={columns} method='POST' api='/api/asset/chk' />
             </Card>
         </PageHeaderWrapper>
     </div >

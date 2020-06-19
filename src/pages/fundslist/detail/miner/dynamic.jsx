@@ -1,9 +1,9 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useBoolean, useRequest } from '@umijs/hooks';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { history } from 'umi';
+import { history , Prompt } from 'umi';
 import { currency } from '@/utils/number'
-import { Prompt } from 'umi';
+
 import { Button, Descriptions, Card, Spin, Tabs } from 'antd'
 import Myminer from './components/Myminer/index'
 import Votingrewards from './components/Votingrewards/index'
@@ -12,6 +12,7 @@ import Tlogin from './components/login/index'
 import Tlogout from './components/logout/index'
 import { querysomething } from './service'
 import styles from './index.less';
+
 const { TabPane } = Tabs;
 const MinerDetail = ({ ...props }) => {
     const { location: { query: { id: uid } } } = props
@@ -30,7 +31,7 @@ const MinerDetail = ({ ...props }) => {
                     批量投票
         </Button>]} />
             <Spin spinning={loading}>
-                <Card bordered={true}>
+                <Card bordered>
                     <Descriptions layout="vertical" title="" style={{ marginBottom: 32 }}>
                         <Descriptions.Item label="矿机总余额(DX)">{currency(200000000, true)}</Descriptions.Item>
                         <Descriptions.Item label="投票质押金额(DX)">{currency(100000000, true)}</Descriptions.Item>
@@ -45,7 +46,7 @@ const MinerDetail = ({ ...props }) => {
                     <Myminer />
                 </TabPane>
                 <TabPane tab='投票奖励' key='2'>
-                    <Votingrewards></Votingrewards>
+                    <Votingrewards />
                 </TabPane>
 
                 {/* <TabPane tab='资产详情' key='2'>
@@ -62,7 +63,7 @@ const MinerDetail = ({ ...props }) => {
                         style={{ marginBottom: 40 }}>
                         <TabPane tab='转入' key='1'>
                             {/* <HooksTable depsProps={{ type: secondActiveKey }} deps={[secondActiveKey]} usePagination={true} api={`${Api.minnerDeposit}`} columns={columns} /> */}
-                            <Tlogin></Tlogin>
+                            <Tlogin />
                         </TabPane>
                         <TabPane tab='转出' key='2'>
                             <Tlogout />

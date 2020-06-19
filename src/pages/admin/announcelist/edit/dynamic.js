@@ -5,26 +5,28 @@ import { history } from 'umi';
 import { FormInstance } from 'antd/lib/form';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { EllipsisOutlined, PlusOutlined, ArrowLeftOutlined } from '@ant-design/icons';
-import store from './store.js'
 import { baseUrl } from '@/utils/index'
 import { observer } from 'mobx-react'
 import locale from 'antd/es/date-picker/locale/zh_CN';
 import { get, post, del } from '@/utils/fetch'
-import listStore from '../list/store'
 import storage from '@/utils/storage'
 import moment from 'moment';
 import E from 'wangeditor'
+import listStore from '../list/store'
+import store from './store.js'
 import 'moment/locale/zh-cn';
+
 moment.locale('zh-cn');
 const token = storage.get('user') && Object.prototype.hasOwnProperty.call(storage.get('user'), 'token') && storage.get('user').token || ''
 
 const FormItem = Form.Item;
-const Option = Select.Option
+const {Option} = Select
 const dateFormat = 'YYYY-MM-DD HH:mm:ss';
 
 @observer
 class AnnounceList extends Component {
   formRef = React.createRef();
+
   state = {
     previewVisible: false,
     previewImage: '',
@@ -90,8 +92,8 @@ class AnnounceList extends Component {
         // formData.append('uid', storage.get('uesr') && storage.get('uesr').uid)
         // formData.append('token', storage.get('uesr') && storage.get('uesr').token)
         console.log(formData, 'okok')
-        let res = post(baseUrl + '/api/announce/upload-image', formData).then((res) => {
-          const data = res.data.data
+        const res = post(`${baseUrl  }/api/announce/upload-image`, formData).then((res) => {
+          const {data} = res.data
           console.log(data, 'data000')
           if (data) {
             // 上传代码返回结果之后，将图片插入到编辑器中
@@ -145,15 +147,17 @@ class AnnounceList extends Component {
       previewVisible: true,
     });
   };
+
   // 返回上级
   goback = () => {
     history.push('admin/announcelist/list')
   }
+
   // 提交
   handleSubmit = (status, e) => {
     e.preventDefault();
     this.formRef.current.validateFields().then(values => {
-      let params = { ...values }
+      const params = { ...values }
       // // 点击按钮后，将表单提交给后台
       params.publishTime = params.publishTime ? moment(params.publishTime).format(dateFormat) : null
       params.content = this.editor.txt.html()
@@ -194,7 +198,7 @@ class AnnounceList extends Component {
           <Card>
             <PageHeaderWrapper title={title} />
             <Row>
-              <Col className="personal-title" span={20}>{''}</Col>
+              <Col className="personal-title" span={20} />
               <Col className="personal-title" span={4}>
                 <Button onClick={this.goback}>
                   {/* <Icon type="arrow-left" /> */}
@@ -222,7 +226,7 @@ class AnnounceList extends Component {
               >
 
                 <Upload
-                  action={baseUrl + '/api/announce/upload-image'}
+                  action={`${baseUrl  }/api/announce/upload-image`}
                   // data={{ uid: storage.get('uesr') && storage.get('uesr').uid }}
                   listType="picture-card"
                   fileList={imgList}

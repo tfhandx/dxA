@@ -35,7 +35,6 @@ export default defineConfig({
         ? 'https://shequ-test.dxapp.net/dxAdmin/'
         : '/',
   locale: {
-    // default zh-CN
     default: 'zh-CN',
     // default true, when it is true, will use `navigator.language` overwrite default
     antd: true,

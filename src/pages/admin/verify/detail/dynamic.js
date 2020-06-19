@@ -25,7 +25,7 @@ const DetailsVote = (props) => {
         });
     }
     console.log('history.location.query.id', history.location)
-    //获取详情
+    // 获取详情
     const { data: detail = {
         uid: '',
         nickName: '',
@@ -50,7 +50,7 @@ const DetailsVote = (props) => {
                 if (res.code === 200) {
                     const detail = res.data
                     form.setFieldsValue({
-                        reviewStatus: detail.reviewStatus === 0 ? '' : detail.reviewStatus === 10 ? '' : detail.reviewStatus + '',
+                        reviewStatus: detail.reviewStatus === 0 ? '' : detail.reviewStatus === 10 ? '' : `${detail.reviewStatus  }`,
                         reviewOpinion: `${detail.reviewOpinion === null ? '' : detail.reviewOpinion}`
                     })
                     return { ...res.data }
@@ -66,7 +66,7 @@ const DetailsVote = (props) => {
             // defaultPageSize: 5
         }
     )
-    //编辑后提交
+    // 编辑后提交
     async function subdetail(data) {
         return request(`/api/review/candidate/commit`, {
             method: 'POST',
@@ -120,7 +120,7 @@ const DetailsVote = (props) => {
         //         subData(params)
         //     }
         // )
-        let params = { uid: detail.uid, nickName: detail.nickName, ...values }
+        const params = { uid: detail.uid, nickName: detail.nickName, ...values }
         subData(params)
     }
     const { getFieldDecorator } = form;
@@ -139,7 +139,7 @@ const DetailsVote = (props) => {
                     <h2>节点名称</h2>
                     <div className="details-box">{detail.nickName}{detail.reviewOpinion}</div>
                     <h2>DX持仓量</h2>
-                    <div className="details-box">{currency(detail.chkBalance)}<span className="box-span"></span></div>
+                    <div className="details-box">{currency(detail.chkBalance)}<span className="box-span" /></div>
                     <h2>节点质押数量</h2>
                     <div className="details-box">{currency(detail.deposit)}</div>
                     <h2>投票奖励分配</h2>
@@ -170,7 +170,7 @@ const DetailsVote = (props) => {
                             <FormItem
                                 label="审核结果"
                                 {...formItemLayout}
-                                labelAlign={'left'}
+                                labelAlign="left"
                                 name='reviewStatus'
                             >
                                 {/* {getFieldDecorator('reviewStatus', {
@@ -188,7 +188,7 @@ const DetailsVote = (props) => {
                             {
                                 detail.type === '取消超级节点' ? null :
                                     <FormItem
-                                        labelAlign={'left'}
+                                        labelAlign="left"
                                         {...formItemLayout}
                                         label="审核意见"
                                         name='reviewOpinion'

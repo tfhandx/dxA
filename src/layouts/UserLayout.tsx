@@ -58,7 +58,7 @@ const UserLayout: React.FC<UserLayoutProps> = (props) => {
                 <span className={styles.title}>Dx Admin</span>
               </Link>
             </div>
-            <div className={styles.desc}></div>
+            <div className={styles.desc} />
           </div>
           {children}
         </div>
@@ -107,8 +107,7 @@ const UserLayout: React.FC<UserLayoutProps> = (props) => {
               blankTarget: true,
             },
           ]}
-        >
-        </DefaultFooter>
+         />
       </div>
     </HelmetProvider>
   );

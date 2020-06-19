@@ -1,8 +1,8 @@
 import { Effect, history, Reducer } from 'umi';
 import { message } from 'antd';
-import { fakeAccountLogin, getFakeCaptcha } from './service';
 import { parse } from 'qs';
 import storage from '@/utils/storage'
+import { fakeAccountLogin, getFakeCaptcha } from './service';
 
 export function getPageQuery() {
   return parse(window.location.href.split('?')[1]);

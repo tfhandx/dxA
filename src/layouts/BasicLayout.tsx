@@ -21,6 +21,7 @@ import RightContent from '@/components/GlobalHeader/RightContent';
 import { ConnectState } from '@/models/connect';
 import { getAuthorityFromRouter } from '@/utils/utils';
 import logo from '../assets/logodx.svg';
+
 const noMatch = (
   <Result
     status={403}
@@ -159,7 +160,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
     <>
       {/* <useViewport.ViewportProvider> */}
       <ProLayout
-        logo={'https://shequ-test.dxapp.net/dxAdmin/camel.png'}
+        logo="https://shequ-test.dxapp.net/dxAdmin/camel.png"
         formatMessage={formatMessage}
         // title='dx'
         menuHeaderRender={(logoDom, titleDom) => (

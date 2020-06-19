@@ -1,12 +1,12 @@
 import { Badge, Card, Descriptions, Divider, Table, Button, Dropdown, Menu, Radio } from 'antd';
 import React, { Component } from 'react';
 import { EllipsisOutlined } from '@ant-design/icons';
-import { history } from 'umi';
+import { history , connect, Dispatch } from 'umi';
 
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { connect, Dispatch } from 'umi';
-import { BasicProfileDataType } from './data.d';
+
 import HooksTable from '@/components/hooksTable/index'
+import { BasicProfileDataType } from './data.d';
 import styles from './style.less';
 
 const columns: ProColumns<TableListItem>[] = [
@@ -152,21 +152,24 @@ class Basic extends Component<BasicProps, BasicState> {
       depsValue: 'a'
     }
   }
+
   componentDidMount() {
     const { dispatch } = this.props;
     dispatch({
       type: 'userlistAndbasic/fetchBasic',
     });
   }
+
   onChange = (e) => {
     console.log(`radio checked:${e.target.value}`);
     this.setState({
       depsValue: e.target.value,
     })
   }
+
   goexactDetail = (pathname = '') => {
     history.push({
-      pathname: pathname,
+      pathname,
       query: {
         id: history.location.query.id,
       },
@@ -323,7 +326,7 @@ class Basic extends Component<BasicProps, BasicState> {
             columns={goodsColumns}
             rowKey="id"
           /> */}
-          <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination={true} columns={columns} api='/api/miner/getall' method='GET' />
+          <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination columns={columns} api='/api/miner/getall' method='GET' />
         </Card>
       </PageHeaderWrapper>
     );

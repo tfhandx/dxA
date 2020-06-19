@@ -4,10 +4,11 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { history } from 'umi';
 import { currency } from '@/utils/number'
 import { Button, Descriptions, Card, Spin, Divider } from 'antd'
-import { querysomething } from './service'
 import { strInsert } from '@/utils/utils'
 import HooksTable from '@/components/hooksTable/index'
+import { querysomething } from './service'
 import styles from './index.less';
+
 const typeName = (type) => {
     switch (type) {
         case 'A': return '空投奖励'; break;
@@ -91,8 +92,8 @@ const columns = [
 const Chklog = ({ ...props }) => {
     const [depsValue, setdepsValue] = useState('a');
     return <div>
-        <Card bordered={true}>
-            <HooksTable usetimesearch={true} deps={[depsValue]} depsProps={{ depsValue }} usePagination={true} columns={columns} api='/api/asset/chk' method='POST' />
+        <Card bordered>
+            <HooksTable usetimesearch deps={[depsValue]} depsProps={{ depsValue }} usePagination columns={columns} api='/api/asset/chk' method='POST' />
         </Card>
     </div >
 

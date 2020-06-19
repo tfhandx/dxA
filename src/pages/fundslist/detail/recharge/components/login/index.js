@@ -4,7 +4,6 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { history } from 'umi';
 import { currency } from '@/utils/number'
 import { Button, Descriptions, Card, Spin, Divider } from 'antd'
-import { querysomething } from './service'
 import { strInsert } from '@/utils/utils'
 import HooksTable from '@/components/hooksTable/index'
 import {
@@ -29,7 +28,9 @@ import {
     Rating,
     FormItemGrid
 } from '@formily/antd-components' // 或者@formily/next-components
+import { querysomething } from './service'
 import 'antd/dist/antd.css'
+import styles from './index.less';
 
 const components = {
     Input,
@@ -77,7 +78,6 @@ const getInitialValues = () => {
         }, 1000)
     })
 }
-import styles from './index.less';
 const typeName = (type) => {
     switch (type) {
         case 'A': return '空投奖励'; break;
@@ -179,7 +179,7 @@ const Savinglog = ({ ...props }) => {
                     console.log('values', values)
                     setIntialValues(values)
                 }}
-                editable={true}
+                editable
                 wrapperCol={19}
                 components={components}>
                 <FormItemGrid gutter={20}>
@@ -231,8 +231,8 @@ const Savinglog = ({ ...props }) => {
             </SchemaForm>
         </Card>
 
-        <Card bordered={true}>
-            <HooksTable usetimesearch={true} deps={[initialValues]} depsProps={initialValues} usePagination={true} columns={columns} api='/api/asset/savings' method='POST' />
+        <Card bordered>
+            <HooksTable usetimesearch deps={[initialValues]} depsProps={initialValues} usePagination columns={columns} api='/api/asset/savings' method='POST' />
         </Card>
     </div >
 

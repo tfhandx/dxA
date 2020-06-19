@@ -9,12 +9,12 @@ const Goback = (props) => {
   }
 
 
-  const { extraElement = <span></span> } = props
+  const { extraElement = <span /> } = props
   return (
     <div className="goback">
       <div className="detailed-goback">
         <span onClick={gobackClick}>
-          <i style={{ fontSize: 16 }} className={['iconfont', 'icon-left-copy'].join(' ')}></i>
+          <i style={{ fontSize: 16 }} className={['iconfont', 'icon-left-copy'].join(' ')} />
           <span style={{ paddingLeft: 10 }}>返回上一级</span>
         </span>
         {extraElement}

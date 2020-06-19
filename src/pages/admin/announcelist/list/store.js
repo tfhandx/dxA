@@ -7,18 +7,22 @@ import { message } from 'antd'
 class Stores {
 
   @observable noticeList = []
+
   @observable loading = false
+
   @observable pageInfo = {
     pageIndex: 1,
     pageSize: 10,
     total: 0
   }
+
   @observable categoryType = null
+
   @observable checked = null
 
   @action('查询公告') queryAnnounce = async function (type, category) {
     this.loading = true
-    let params = {
+    const params = {
       data: {
         type,
         category,
@@ -29,7 +33,7 @@ class Stores {
     if (type === 1) {
       params.data.status = this.checked
     }
-    let res = await post(Api.announceGet, params)
+    const res = await post(Api.announceGet, params)
     if (res.data.code === 200) {
       runInAction(() => {
         this.noticeList = res.data.data.list
@@ -71,18 +75,19 @@ class Stores {
   }
 
   @action('删除列表') delList = async function (id, type) {
-    let params = {
+    const params = {
       data: {
         id,
       },
     }
-    let res = await post(Api.announceDelete, params)
+    const res = await post(Api.announceDelete, params)
     if (res.data.code === 200) {
       runInAction(() => {
         this.queryAnnounce(type, this.categoryType)
       })
     }
   }
+
   @action('草稿') checkboxChange = async function (checked, type) {
     this.checked = checked ? 0 : null
     this.pageInfo = {

@@ -65,7 +65,7 @@ const UserModel: UserModelType = {
       clareAuthority();
       yield put({
         type: 'user/saveCurrentUser',
-        payload: payload
+        payload
       });
       if (window.location.pathname !== '/user/login' && !redirect) {
         history.replace({

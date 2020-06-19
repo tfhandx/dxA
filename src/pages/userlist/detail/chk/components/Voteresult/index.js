@@ -4,10 +4,11 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { history } from 'umi';
 import { currency } from '@/utils/number'
 import { Button, Descriptions, Card, Spin, Divider } from 'antd'
-import { querysomething } from './service'
 import { strInsert } from '@/utils/utils'
 import HooksTable from '@/components/hooksTable/index'
+import { querysomething } from './service'
 import styles from './index.less';
+
 const columns = [
     {
         title: '矿机序列号',
@@ -56,7 +57,7 @@ const columns = [
         key: 'status',
         align: 'center',
         render: (text, record, index) => {
-            return Boolean(text) ? '已完成' : '未完成'
+            return text ? '已完成' : '未完成'
         }
     },
     {
@@ -68,7 +69,7 @@ const columns = [
     {
         title: <div>
             <Button className="exitAll"
-                disabled={true}
+                disabled
             > 全部取消</Button>
         </div>,
         dataIndex: "",
@@ -78,7 +79,7 @@ const columns = [
             return (
                 <span>
                     <Button
-                        disabled={true}
+                        disabled
                         type="danger"
                     >
                         取消
@@ -96,8 +97,8 @@ const columns = [
 const Voteresult = ({ ...props }) => {
     const [depsValue, setdepsValue] = useState('a');
     return <div>
-        <Card bordered={true}>
-            <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination={true} columns={columns} api='/api/miner/voteresult' method='POST' />
+        <Card bordered>
+            <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination columns={columns} api='/api/miner/voteresult' method='POST' />
         </Card>
     </div >
 

@@ -2,16 +2,16 @@ import React, { Component } from 'react'
 import './style.less'
 import { Spin, Modal, Button, Form, message, Radio } from 'antd';
 import { history } from 'umi';
-import store from './store'
 import { observer } from 'mobx-react'
 import Goback from '@/components/Goback/index'
 // import SQtextarea from '@/components/SQtextarea/index'
 import Input from '@/components/dxinput/index'
 import { currency } from '@/utils/number'
+import store from './store'
 
 const FormItem = Form.Item;
 const RadioGroup = Radio.Group
-const TextArea = Input.TextArea
+const {TextArea} = Input
 const SQtextarea = Input.TextAreaWithMax
 
 @observer
@@ -21,6 +21,7 @@ class DetailsVote extends Component {
     this.state = {
     }
   };
+
   componentDidMount = () => {
     if (window.location.href.indexOf('?uid') !== -1) {
       store.fetchData(window.location.href.split('?uid=')[1])
@@ -38,7 +39,7 @@ class DetailsVote extends Component {
         if (err) {
           return
         }
-        let params = { ...values }
+        const params = { ...values }
         store.subData(params).then((res) => {
           if (res.data.code === 200) {
             history.push('admin/examinevote/list')
@@ -64,7 +65,7 @@ class DetailsVote extends Component {
           <h2>节点名称</h2>
           <div className="details-box">{data.nickName}</div>
           <h2>DX持仓量</h2>
-          <div className="details-box">{currency(data.chkBalance)}<span className="box-span"></span></div>
+          <div className="details-box">{currency(data.chkBalance)}<span className="box-span" /></div>
           <h2>节点质押数量</h2>
           <div className="details-box">{currency(data.deposit)}</div>
           <h2>投票奖励分配</h2>
@@ -83,9 +84,9 @@ class DetailsVote extends Component {
           <h2>审核状态</h2>
           <Form onSubmit={this.handleSubmit}>
             <div className="radio-form">
-              <FormItem label="审核结果" {...formItemLayout} labelAlign={'left'}>
+              <FormItem label="审核结果" {...formItemLayout} labelAlign="left">
                 {getFieldDecorator('reviewStatus', {
-                  initialValue: data.reviewStatus === 0 ? '' : data.reviewStatus === 10 ? '' : data.reviewStatus + ''
+                  initialValue: data.reviewStatus === 0 ? '' : data.reviewStatus === 10 ? '' : `${data.reviewStatus  }`
                 })(
                   <RadioGroup disabled={loading}>
                     <Radio value="30" disabled={data.reviewStatus === 0}>审核通过</Radio>

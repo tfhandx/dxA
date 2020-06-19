@@ -4,10 +4,11 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { history } from 'umi';
 import { currency } from '@/utils/number'
 import { Button, Descriptions, Card, Spin, Divider } from 'antd'
-import { querysomething } from './service'
 import { strInsert } from '@/utils/utils'
 import HooksTable from '@/components/hooksTable/index'
+import { querysomething } from './service'
 import styles from './index.less';
+
 const columns = [
     {
         title: '周期',
@@ -63,8 +64,8 @@ const columns = [
 const Voteresult = ({ ...props }) => {
     const [depsValue, setdepsValue] = useState('a');
     return <div>
-        <Card bordered={true}>
-            <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination={true} columns={columns} api='/api/supernode/election' />
+        <Card bordered>
+            <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination columns={columns} api='/api/supernode/election' />
         </Card>
     </div >
 

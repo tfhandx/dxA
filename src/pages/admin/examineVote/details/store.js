@@ -17,15 +17,18 @@ class Stores {
     reviewOpinion: null,
     reviewStatus: '30'
   }
+
   @observable orderId = ''
+
   @observable loading = false
+
   @action('查询DX金额') fetchData = async function (uid) {
     this.loading = true
-    let params = {
+    const params = {
       uuid: uid
     }
     this.orderId = uid
-    let res = await get(Api.candidateGet, params)
+    const res = await get(Api.candidateGet, params)
     if (res.data.code === 200) {
       runInAction(() => {
         this.data = res.data.data
@@ -36,14 +39,14 @@ class Stores {
 
   @action('查询DX金额') subData = async function (params) {
     this.loading = true
-    let data = {
+    const data = {
       ...params,
       uid: this.data.uid,
       nickName: this.data.nickName,
       orderId: this.orderId
     }
 
-    let res = await post(Api.candidateCommit, data)
+    const res = await post(Api.candidateCommit, data)
     if (res.data.code === 200) {
       runInAction(() => {
         // message.success('操作成功')

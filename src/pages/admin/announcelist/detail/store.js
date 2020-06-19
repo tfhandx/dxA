@@ -13,14 +13,15 @@ class Stores {
     publishTime: '',
     content: ''
   } // 列表的loading
+
   @action('方法描述') detailsQuery = async function (id, type) {
-    let params = {
+    const params = {
       data: {
         type,
         id,
       },
     }
-    let res = await post(Api.announceGetOne, params)
+    const res = await post(Api.announceGetOne, params)
     if (res.data.code === 200) {
       runInAction(() => {
         this.areaCode = res.data.data

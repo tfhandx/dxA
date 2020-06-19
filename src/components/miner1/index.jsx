@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { history } from 'umi';
 import { Button } from 'antd'
 import styles from './index.less';
+
 const subroot = document.getElementById('subroot');
 const root = document.getElementById('root');
 const el = React.createRef()
@@ -23,7 +24,7 @@ const MinerDetail = ({ ...props }) => {
         name='shequ'
         width='100%'
         style={{ height: '100vh' }}
-    ></iframe>
+     />
     // return ReactDOM.createPortal(
     //     <div height='100vh' className={styles.iframe} >
     //         <div className={styles.close}>

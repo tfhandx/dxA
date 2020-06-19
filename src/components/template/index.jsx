@@ -6,6 +6,7 @@ import { currency } from '@/utils/number'
 import { Button, Descriptions, Card, Spin, Tabs } from 'antd'
 import { querysomething } from './service'
 import styles from './index.less';
+
 const { TabPane } = Tabs;
 const Template = ({ ...props }) => {
     const { location: { query: { id: uid } } } = props
@@ -24,7 +25,7 @@ const Template = ({ ...props }) => {
                     批量投票
         </Button>]} />
             <Spin spinning={loading}>
-                <Card bordered={true} style={{ marginBottom: 32 }}>
+                <Card bordered style={{ marginBottom: 32 }}>
                     <Descriptions layout="vertical" title="" style={{ marginBottom: 32 }}>
                         <Descriptions.Item label="矿机总余额">{currency(200000000)}</Descriptions.Item>
                         <Descriptions.Item label="投票质押金额">{currency(100000000)}</Descriptions.Item>

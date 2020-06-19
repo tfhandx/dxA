@@ -6,7 +6,7 @@ export async function query(): Promise<any> {
 
 export async function queryCurrent(): Promise<any> {
   // return request('/api/currentUser');
-  return new Promise((resolve, reject) => {
+  return new Promise((resolve) => {
     setTimeout(() => {
       resolve({
         name: 'tfhan',

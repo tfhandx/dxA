@@ -4,6 +4,7 @@ import { Route } from '@/models/connect';
 import React, { useEffect, useState } from 'react'
 import storage from '@/utils/storage'
 import { Menu, Icon, Card } from 'antd';
+
 const { SubMenu } = Menu;
 
 
@@ -86,8 +87,8 @@ export const getRouteAuthority = (path: string, routeData: Route[]) => {
   });
   return authorities;
 };
-var toString = Object.prototype.toString;
-var hasOwnProperty = Object.prototype.hasOwnProperty
+const {toString} = Object.prototype;
+const {hasOwnProperty} = Object.prototype
 //  export function isObject(val) {
 //     return val !== null && typeof val === 'object';
 // }
@@ -107,8 +108,8 @@ export function strInsert(str, length) {
   if (str === undefined || str === '' || str === null) {
     return '非法的序列号'
   }
-  let reg = new RegExp("(\\d|[a-z]|[A-Z]){" + length + "}", "g");
-  let ma = str.match(reg);
+  const reg = new RegExp(`(\\d|[a-z]|[A-Z]){${  length  }}`, "g");
+  const ma = str.match(reg);
   // let ma = str.match(/(\d|[a-z]|[A-Z]){5}/g);
   return ma.join('-')
 }
@@ -121,17 +122,17 @@ export const insertSeparator = (arr, fieldName) => {
           value: item[fieldName]
         }
       }
-      else {
+      
         return null
-      }
+      
     }).filter(i => i)
   }
-  else {
+  
     return []
-  }
+  
 }
 export function getqueryValueByKey(val) {
-  return;
+  
 }
 export const FormatterData = (data, type) => {
   let result = [];
@@ -139,7 +140,7 @@ export const FormatterData = (data, type) => {
   let end = '';
   result.start = start;
   result.end = end;
-  let isUser = type === 'user';
+  const isUser = type === 'user';
   if (!Object.hasOwnProperty.call(data, 'list')) {
     return result
   }
@@ -153,10 +154,10 @@ export const FormatterData = (data, type) => {
       }
       return isUser ? {
         x: Object.keys(item)[0],
-        ['userCount']: item[Object.keys(item)[0]][type] / 1000,
+        'userCount': item[Object.keys(item)[0]][type] / 1000,
       } : {
           x: Object.keys(item)[0],
-          ['weighCount']: item[Object.keys(item)[0]][type],
+          'weighCount': item[Object.keys(item)[0]][type],
         }
     }
     )

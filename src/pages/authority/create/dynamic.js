@@ -86,7 +86,7 @@ const App = ({ ...props }) => {
                 onSubmit={(values) => {
                     console.log('values', values)
                 }}
-                editable={true}
+                editable
                 wrapperCol={14}
                 components={components}>
                 <Field type="string" title="String" name="string" x-component="Input" />

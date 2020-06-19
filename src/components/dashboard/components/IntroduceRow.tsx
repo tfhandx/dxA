@@ -27,7 +27,7 @@ const IntroduceRow = ({ loading, visitData }: { loading: boolean; visitData: Vis
         title={
           <FormattedMessage
             id="dashboardandanalysis.analysis.total-sales"
-            defaultMessage="Total Sales"
+            defaultMessage="总资产"
           />
         }
         action={

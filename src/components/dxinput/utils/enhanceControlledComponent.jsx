@@ -1,6 +1,6 @@
-import React from 'react'
+import React, { useImperativeHandle, forwardRef } from 'react'
 
-import { useImperativeHandle, forwardRef } from 'react'
+
 
 function enhanceControlledComponent(Component) {
   const EnhancedComponent = (props, ref) => {

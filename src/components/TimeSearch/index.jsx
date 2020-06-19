@@ -13,9 +13,10 @@ import zhCN from "antd-mobile/lib/calendar/locale/zh_CN";
 import { DatePicker } from "antd";
 import moment from "moment";
 import { Calendar, List, Switch } from "antd-mobile";
-import { getTimeDistance } from "./utils/utils";
 import { useWindowViewPortChange } from "@/utils/utils";
+import { getTimeDistance } from "./utils/utils";
 import "./index.less";
+
 const { RangePicker } = DatePicker;
 const oneDay = 1000 * 60 * 60 * 24 - 1;
 const originbodyScrollY = document.getElementsByTagName("body")[0].style
@@ -64,7 +65,7 @@ const TimeSearch = ({
   const [pcflag, setFlag] = useState(false);
   const [startTime, setStartTime] = useState(getTimeDistance("30days")[0]);
   const [endTime, setEndTime] = useState(getTimeDistance("30days")[1]);
-  let offsetOfWindow = useWindowViewPortChange();
+  const offsetOfWindow = useWindowViewPortChange();
   useEffect(() => {
     sentData(
       offsetOfWindow > 1000
@@ -119,7 +120,7 @@ const TimeSearch = ({
     return (
       <List.Item
         arrow="horizontal"
-        extra={"点击选择"}
+        extra="点击选择"
         onClick={() => {
           document.getElementsByTagName("body")[0].style.overflowY = "hidden";
           setShow(true);

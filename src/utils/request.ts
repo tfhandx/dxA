@@ -3,9 +3,9 @@
  * 更详细的 api 文档: https://github.com/umijs/umi-request
  */
 import { extend } from 'umi-request';
-import { post } from './fetch'
 import { notification } from 'antd';
 import storage from '@/utils/storage'
+import { post } from './fetch'
 // const baseUrl = process.env.REACT_APP_ENV === 'dev' ? 'https://shequ-test.dxchain.com' : process.env.REACT_APP_ENV === 'pre' ? "https://shequ.dxchain.com" : ''
 // const baseUrl = process.env.REACT_APP_ENV === 'dev' ? '' : process.env.REACT_APP_ENV === 'pre' ? "https://shequ.dxchain.com" : ''
 const baseUrl = process.env.REACT_APP_ENV === 'dev' ? 'https://shequ-test.dxchain.com' : process.env.REACT_APP_ENV === 'pre' ? "https://shequ-test.dxchain.com" : ''

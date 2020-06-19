@@ -3,6 +3,7 @@ import { Button } from 'antd'
 import useViewport from '@/components/useViewport/index.jsx'
 import DxDialog from '@/components/dialog/index.js'
 import styles from './index.less'
+
 const MobileSearch = () => {
     const [numbers, setNums] = useState([]);
     useEffect(() => {
@@ -19,7 +20,7 @@ const MobileSearch = () => {
     return <div>
         <div>{width}{height}</div>
         <div>
-            <DxDialog></DxDialog>
+            <DxDialog />
         </div>
         {numbers.map((item) => {
             return <li className={styles.li} key={`${item}`}>
