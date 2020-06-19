@@ -214,7 +214,6 @@ export default defineConfig({
                   name: 'verify',
                   icon: 'smile',
                   path: '/admin/verify',
-                  // component: './admin/verify',
                   routes: [
                     {
                       name: 'list',
@@ -244,13 +243,21 @@ export default defineConfig({
                       path: '/admin/examineVote/list',
                       component: isDynamic ? './admin/examineVote/list' : './admin/examineVote/list/dynamic',
                     },
+                    // {
+                    //   name: 'detail',
+                    //   icon: 'smile',
+                    //   path: '/admin/examineVote/detail',
+                    //   component: isDynamic
+                    //     ? './admin/examineVote/details'
+                    //     : './admin/examineVote/details/dynamic',
+                    // },
                     {
                       name: 'detail',
                       icon: 'smile',
-                      path: '/admin/examineVote/detail',
+                      path: '/admin/verify/detail',
                       component: isDynamic
-                        ? './admin/examineVote/details'
-                        : './admin/examineVote/details/dynamic',
+                        ? './admin/verify/detail'
+                        : './admin/verify/detail/dynamic',
                     },
                   ],
                 },

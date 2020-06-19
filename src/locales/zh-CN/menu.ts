@@ -79,9 +79,9 @@ export default {
   'menu.authority': '权限管理',
   'menu.authority-create': '添加管理员',
   // 管理员模块
-  'menu.admin.verify': '审核管理',
-  'menu.admin.verify.list': '审核列表',
-  'menu.admin.verify.detail': '审核编辑',
+  'menu.admin.verify': 'old审核管理',
+  'menu.admin.verify.list': 'old审核列表',
+  'menu.admin.verify.detail': 'old审核编辑',
   // 审核
   'menu.admin.examineVote': '审核管理',
   'menu.admin.examineVote.list': '审核列表',

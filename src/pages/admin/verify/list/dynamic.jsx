@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useBoolean, useRequest } from '@umijs/hooks';
 import { PageHeaderWrapper } from '@ant-design/pro-layout';
-import { history , Prompt } from 'umi';
+import { history, Prompt } from 'umi';
 import { currency } from '@/utils/number'
 
 import { Button, Descriptions, Card, Spin, Tabs, Tag, Switch } from 'antd'
@@ -11,7 +11,7 @@ import { querysomething } from './service'
 import styles from './index.less';
 
 const { TabPane } = Tabs;
-typeName = (type) => {
+const typeName = (type) => {
     switch (type) {
         case 0: return <Tag color='geekblue' key={type}>
             待审核
@@ -171,7 +171,7 @@ const SavingDetail = ({ ...props }) => {
                     <TabPane tab='上线' key='4' />
                     <TabPane tab='下线' key='5' />
                 </Tabs>
-                <HooksTable deps={[type]} depsProps={type === 'all' ? {} : { status: (type === 'all' ? type : Number(type)) }} usePagination columns={columns} api='/api/review/candidate/getall' method='GET' />
+                <HooksTable deps={[type,status]} depsProps={type === 'all' ? {} : { status: (type === 'all' ? type : Number(type)) }} usePagination columns={columns} api='/api/review/candidate/getall' method='GET' />
             </Card>
         </Card>
     </div >
