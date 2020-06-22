@@ -4,10 +4,11 @@ import { PageHeaderWrapper } from '@ant-design/pro-layout';
 import { history } from 'umi';
 import { currency } from '@/utils/number'
 import { Button, Descriptions, Card, Spin, Tabs, Divider } from 'antd'
-import { querysomething } from './service'
 import { strInsert } from '@/utils/utils'
 import HooksTable from '@/components/hooksTable/index'
+import { querysomething } from './service'
 import styles from './index.less';
+
 const columns = [
     {
         title: '矿机序列号',
@@ -68,7 +69,7 @@ const Votingrewards = ({ ...props }) => {
     const { data, error, loading } = useRequest(querysomething)
     return <div>
         <Spin spinning={loading}>
-            <Card bordered={true} style={{ marginBottom: 32 }}>
+            <Card bordered style={{ marginBottom: 32 }}>
                 <Descriptions layout="vertical" title="" style={{ marginBottom: 32 }}>
                     <Descriptions.Item label="获得总奖励(DX)">{currency(200000000, true)}</Descriptions.Item>
                     <Descriptions.Item label="待分配奖励(DX)">{currency(100000000, true)}</Descriptions.Item>
@@ -76,7 +77,7 @@ const Votingrewards = ({ ...props }) => {
                 </Descriptions>
             </Card>
         </Spin>
-        <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination={true} columns={columns} api='/api/miner/rewardlist' method='POST' />
+        <HooksTable deps={[depsValue]} depsProps={{ depsValue }} usePagination columns={columns} api='/api/miner/rewardlist' method='POST' />
     </div >
 
 

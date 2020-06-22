@@ -1,8 +1,8 @@
 import { Effect, history, Reducer } from 'umi';
 import { message } from 'antd';
-import { fakeAccountLogin, getFakeCaptcha } from './service';
 import { parse } from 'qs';
 import storage from '@/utils/storage'
+import { fakeAccountLogin, getFakeCaptcha } from './service';
 
 export function getPageQuery() {
   return parse(window.location.href.split('?')[1]);
@@ -65,6 +65,13 @@ const Model: ModelType = {
         });
         message.success('登录成功！');
         storage.set('user', response.data)
+        if (Array.isArray(response.data.role) && new Set(response.data.role).has(1)) {
+          setAuthority(['admin'])
+        } else if (Array.isArray(response.data.role) && new Set(response.data.role).has(-1)) {
+          setAuthority(['user'])
+        } else {
+          setAuthority(['normal'])
+        }
         const urlParams = new URL(window.location.href);
         const params = getPageQuery();
         let { redirect } = params as { redirect: string };
@@ -84,7 +91,7 @@ const Model: ModelType = {
       }
     },
 
-    *getCaptcha({ payload }, { call }) {
+    * getCaptcha({ payload }, { call }) {
       yield call(getFakeCaptcha, payload);
     },
   },

@@ -3,6 +3,7 @@ import { SchemaForm, SchemaMarkupField as Field, FormButtonGroup, Submit, Reset 
 import { Input } from '@formily/antd-components'
 import styles from './index.less'
 import 'antd/dist/antd.css'
+
 const Formily = ({ ...props }) => {
     return <div className={styles.wrapper}>
         {/* formily example */}
@@ -18,9 +19,7 @@ const Formily = ({ ...props }) => {
                     name='name'
                     title='name'
                     x-component='Input'
-                >
-
-                </Field>
+                 />
                 <FormButtonGroup>
                     <Submit>提交</Submit>
                     <Reset>重置</Reset>

@@ -51,13 +51,13 @@ export default {
   'menu.editor.flow': '流程编辑器',
   'menu.editor.mind': '脑图编辑器',
   'menu.editor.koni': '拓扑编辑器',
-  //用户管理模块
+  // 用户管理模块
   'menu.user-list': '用户管理',
-  //用户管理列表模块
+  // 用户管理列表模块
   'menu.user-list.list': '用户列表',
-  //用户管理基本详情模块
+  // 用户管理基本详情模块
   'menu.user-list.detail': '用户详情',
-  //用户基本详情模块
+  // 用户基本详情模块
   'menu.user-list.detail.detail-basic': '用户基本详情',
   'menu.user-list.detail.detail-advanced': '超级节点信息',
   'menu.user-list.detail.detail-miner': '矿机账户详情',
@@ -65,15 +65,33 @@ export default {
   'menu.user-list.detail.detail-saving': '储蓄账户详情',
   'menu.user-list.detail.detail-supernode': '超级节点账户详情',
   'menu.fundslist': '资金管理',
-  //资金管理
+  // 资金管理
   'menu.fundslist.list': '资金浏览查询',
-  //资金管理详情模块
+  // 资金管理详情模块
   'menu.fundslist.detail': '用户资金详情',
-  //用户基本详情模块
+  // 用户基本详情模块
   'menu.fundslist.detail.detail-out': '用户转出资金详情',
   'menu.fundslist.detail.detail-in': '用户转入资金详情',
   'menu.fundslist.detail.detail-basic': '单个用户资金详情',
+  'menu.fundslist.detail.detail-withdraw': '提币',
+  'menu.fundslist.detail.detail-recharge': '充币',
+  // 用户权限管理
   'menu.authority': '权限管理',
   'menu.authority-create': '添加管理员',
+  // 管理员模块
+  'menu.admin.verify': 'old审核管理',
+  'menu.admin.verify.list': 'old审核列表',
+  'menu.admin.verify.detail': 'old审核编辑',
+  // 审核
+  'menu.admin.examineVote': '审核管理',
+  'menu.admin.examineVote.list': '审核列表',
+  'menu.admin.examineVote.detail': '审核编辑',
+  // 公告管理模块
+  'menu.admin.announcelist': '公告管理',
+  'menu.admin.announcelist.list': '公告查询',
+  'menu.admin.announcelist.detail': '公告详情',
+  'menu.admin.announcelist.edit': '公告编辑',
+  // 查询滚动列表
+  'menu.list.list-search': '查询列表',
 
 };

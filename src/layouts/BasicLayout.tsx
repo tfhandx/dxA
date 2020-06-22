@@ -17,9 +17,11 @@ import { Result, Button, Divider } from 'antd';
 import Authorized from '@/utils/Authorized';
 // import Authorized from '@/pages/Authorized';
 import RightContent from '@/components/GlobalHeader/RightContent';
+// import useViewport from '@/components/useViewport/index.jsx'
 import { ConnectState } from '@/models/connect';
 import { getAuthorityFromRouter } from '@/utils/utils';
 import logo from '../assets/logodx.svg';
+
 const noMatch = (
   <Result
     status={403}
@@ -90,7 +92,7 @@ const defaultFooterDom = (
         blankTarget: true,
       },
       {
-        key: 'boke',
+        key: 'bok',
         title: 'DX博客',
         href: 'https://blog.dxchain.com/',
         blankTarget: true,
@@ -156,8 +158,9 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   console.log('isLogined', isLogin)
   return (
     <>
+      {/* <useViewport.ViewportProvider> */}
       <ProLayout
-        logo={'https://shequ-test.dxapp.net/dxAdmin/camel.png'}
+        logo="https://shequ-test.dxapp.net/dxAdmin/camel.png"
         formatMessage={formatMessage}
         // title='dx'
         menuHeaderRender={(logoDom, titleDom) => (
@@ -213,6 +216,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
           })
         }
       />
+      {/* </useViewport.ViewportProvider> */}
     </>
   );
 };

@@ -71,7 +71,7 @@ const Model: LoginModelType = {
       // Note: There may be security issues, please note
       yield put({
         type: 'saveCurrentLoginStatus',
-        payload: payload
+        payload
       });
       storage.clear();
       if (window.location.pathname !== '/user/login' && !redirect) {

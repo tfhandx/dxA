@@ -28,10 +28,11 @@ import { Input } from '@formily/antd-components'
 // 或者@formily/next-components
 import moment from 'moment';
 import 'antd/dist/antd.css'
+
 const dateFormat = 'YYYY-MM-DD';
 
 const FormTableQuery = (props) => {
-    const bordered = props.bordered;
+    const {bordered} = props;
     const Api = props.api;
     const method = props.method || 'GET';
     const columns = props.columns || []
@@ -40,7 +41,7 @@ const FormTableQuery = (props) => {
     async function queryListData(data = {}) {
         // const Api = 'https://randomuser.me/api';
         return request(Api, {
-            method: method,
+            method,
             data: {
                 ...data,
             },

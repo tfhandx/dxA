@@ -32,9 +32,9 @@ import moment from 'moment';
 const dateFormat = 'YYYY-MM-DD';
 
 const HooksTable = (props) => {
-    const usePagination = props.usePagination;
-    const usetimesearch = props.usetimesearch;
-    const bordered = props.bordered;
+    const {usePagination} = props;
+    const {usetimesearch} = props;
+    const {bordered} = props;
     const Api = props.api;
     const method = props.method || 'GET';
     const columns = props.columns || []
@@ -44,13 +44,14 @@ const HooksTable = (props) => {
     const [end, setEnd] = useState('')
     async function getRule(data) {
         return request(Api, {
-            method: method,
-            data: {
+            method,
+            [method.toLowerCase() === 'get' ? 'params' : 'data']: {
                 ...data,
             },
         });
     }
     const queryListData = (data = {}) => {
+        console.log('datadaya', data)
         return getRule(data)
         // return new Promise((resolve, reject) => {
         //     setTimeout(() => {
@@ -96,8 +97,8 @@ const HooksTable = (props) => {
     const { pagination, tableProps, data, error, loading, params, run, cancel, refresh } = useRequest(
         ({ current, pageSize, sorter: s, filters: f }) => {
             const p = {
-                pageNumber: current, pageSize: pageSize,
-                // start,end 
+                pageNumber: current, pageSize,
+                start, end
             };
             // if (s.field && s.order) {
             //     p[s.field] = s.order;
@@ -117,11 +118,11 @@ const HooksTable = (props) => {
             // manual: true,
             // pollingInterval:10000,
             formatResult: (res) => {
-                const data = res.data.list || [];
+                const data = res.data && Object.prototype.hasOwnProperty.call(res.data, 'list') && res.data.list || [];
                 const total = res.data.total || 0;
                 return {
                     list: data,
-                    total: total
+                    total
                 }
             },
             loadingDelay: 200,

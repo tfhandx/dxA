@@ -36,35 +36,35 @@ export function getTimeDistance(type) {
     return [moment(beginTime), moment(beginTime + (7 * oneDay - 1000))];
   }
   if (type === "7days") {
-    let day = now.getDay();
+    const day = now.getDay();
     now.setHours(0);
     now.setMinutes(0);
     now.setSeconds(0);
-    let sevenDaysAgo = moment(now.getTime()).subtract(7, "days");
+    const sevenDaysAgo = moment(now.getTime()).subtract(7, "days");
     return [sevenDaysAgo, preOneDay];
   }
   if (type === "30days") {
-    let day = now.getDay();
+    const day = now.getDay();
     now.setHours(0);
     now.setMinutes(0);
     now.setSeconds(0);
-    let sevenDaysAgo = moment(now.getTime()).subtract(30, "days");
+    const sevenDaysAgo = moment(now.getTime()).subtract(30, "days");
     return [sevenDaysAgo, preOneDay];
   }
   if (type === "60days") {
-    let day = now.getDay();
+    const day = now.getDay();
     now.setHours(0);
     now.setMinutes(0);
     now.setSeconds(0);
-    let sevenDaysAgo = moment(now.getTime()).subtract(60, "days");
+    const sevenDaysAgo = moment(now.getTime()).subtract(60, "days");
     return [sevenDaysAgo, preOneDay];
   }
   if (type === "90days") {
-    let day = now.getDay();
+    const day = now.getDay();
     now.setHours(0);
     now.setMinutes(0);
     now.setSeconds(0);
-    let sevenDaysAgo = moment(now.getTime()).subtract(90, "days");
+    const sevenDaysAgo = moment(now.getTime()).subtract(90, "days");
     return [sevenDaysAgo, preOneDay];
   }
   if (type === "twoweek") {
@@ -122,11 +122,11 @@ export function getTimeDistance(type) {
     //     moment(moment(`${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`).valueOf() - 1000),
     //     moment(`${year}-${fixedZero(month + 1)}-01 00:00:00`),
     // ];
-    let day = now.getDay();
+    const day = now.getDay();
     now.setHours(0);
     now.setMinutes(0);
     now.setSeconds(0);
-    let sevenDaysAgo = moment(now.getTime()).subtract(180, "days");
+    const sevenDaysAgo = moment(now.getTime()).subtract(180, "days");
     return [sevenDaysAgo, preOneDay];
   }
   if (type === "1year") {
@@ -138,11 +138,11 @@ export function getTimeDistance(type) {
     //     moment(moment(`${nextYear}-${fixedZero(nextMonth + 1)}-01 00:00:00`).valueOf() - 1000),
     //     moment(`${year}-${fixedZero(month + 1)}-01 00:00:00`),
     // ];
-    let day = now.getDay();
+    const day = now.getDay();
     now.setHours(0);
     now.setMinutes(0);
     now.setSeconds(0);
-    let sevenDaysAgo = moment(now.getTime()).subtract(365, "days");
+    const sevenDaysAgo = moment(now.getTime()).subtract(365, "days");
     return [sevenDaysAgo, preOneDay];
   }
   if (type === "2year") {

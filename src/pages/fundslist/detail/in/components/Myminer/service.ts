@@ -5,7 +5,4 @@ import api from '@/utils/api'
 export async function querysomething() {
     return request('/api/miner/getall');
 }
-// export async function querysomething() {
-//     return request('/api/profile/basic');
-// }
 

@@ -5,8 +5,9 @@ import { Link, useIntl, ConnectProps, connect } from 'umi';
 import React from 'react';
 import SelectLang from '@/components/SelectLang';
 import { ConnectState } from '@/models/connect';
-import logo from '../assets/camel.png';
+import logo from '../../public/camel.png';
 import styles from './UserLayout.less';
+
 
 export interface UserLayoutProps extends Partial<ConnectProps> {
   breadcrumbNameMap: {
@@ -57,7 +58,7 @@ const UserLayout: React.FC<UserLayoutProps> = (props) => {
                 <span className={styles.title}>Dx Admin</span>
               </Link>
             </div>
-            <div className={styles.desc}></div>
+            <div className={styles.desc} />
           </div>
           {children}
         </div>
@@ -88,7 +89,7 @@ const UserLayout: React.FC<UserLayoutProps> = (props) => {
               blankTarget: true,
             },
             {
-              key: 'boke',
+              key: 'boke2',
               title: 'DX博客',
               href: 'https://blog.dxchain.com/',
               blankTarget: true,
@@ -106,8 +107,7 @@ const UserLayout: React.FC<UserLayoutProps> = (props) => {
               blankTarget: true,
             },
           ]}
-        >
-        </DefaultFooter>
+         />
       </div>
     </HelmetProvider>
   );
