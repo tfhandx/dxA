@@ -3,7 +3,7 @@ import React from 'react'
 import querystring from 'querystring'
 import storage from '@/utils/storage'
 import { Modal } from 'antd'
-import {history} from 'umi'
+import { history } from 'umi'
 import { baseUrl, offerUrl } from './index'
 
 function getPageQuery() {
@@ -22,7 +22,7 @@ const fetcher = axios.create({
 
 fetcher.interceptors.request.use(function (config) {
   const token = storage.get('user') && storage.get('user').token
-  config.headers.common.Authorization = `Bearer ${  token}`;
+  config.headers.common.Authorization = `Bearer ${token}`;
   return config;
 }, function (error) {
   return Promise.reject(error)
@@ -32,7 +32,7 @@ const errModal = []
 
 fetcher.interceptors.response.use(function (response) {
   const resData = response.data
-  const {message} = resData
+  const { message } = resData
   if (resData.code) {
     if (message) {
       const errCode = resData.code
@@ -149,35 +149,35 @@ export const get = (url, params) => {
   const mockInfo = mockInterceptors(url)
   if (mockInfo.mocked) {
     return mockInfo.mock
-  } 
-    return fetcher.get(mockInfo.url, { params })
-  
+  }
+  return fetcher.get(mockInfo.url, { params })
+
 }
 export const post = (url, params) => {
   console.log('axios.name', axios.name);
   const mockInfo = mockInterceptors(url)
   if (mockInfo.mocked) {
     return mockInfo.mock
-  } 
-    return fetcher.post(mockInfo.url, params)
-  
+  }
+  return fetcher.post(mockInfo.url, params)
+
 }
 
 export const put = (url, params) => {
   const mockInfo = mockInterceptors(url)
   if (mockInfo.mocked) {
     return mockInfo.mock
-  } 
-    return fetcher.put(mockInfo.url, params)
-  
+  }
+  return fetcher.put(mockInfo.url, params)
+
 }
 
 export const del = (url, params) => {
   const mockInfo = mockInterceptors(url)
   if (mockInfo.mocked) {
     return mockInfo.mock
-  } 
-    return fetcher.delete(mockInfo.url, { params })
-  
+  }
+  return fetcher.delete(mockInfo.url, { params })
+
 }
 export default post

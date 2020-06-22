@@ -5,6 +5,11 @@
 import { extend } from 'umi-request';
 import { notification } from 'antd';
 import storage from '@/utils/storage'
+import { getPageQuery } from '@/utils/utils';
+import { history } from 'umi';
+import { clareAuthority } from '@/utils/authority';
+import { stringify } from 'querystring';
+
 // const baseUrl = process.env.REACT_APP_ENV === 'dev' ? 'https://shequ-test.dxchain.com' : process.env.REACT_APP_ENV === 'pre' ? "https://shequ.dxchain.com" : ''
 // const baseUrl = process.env.REACT_APP_ENV === 'dev' ? '' : process.env.REACT_APP_ENV === 'pre' ? "https://shequ.dxchain.com" : ''
 const baseUrl = process.env.REACT_APP_ENV === 'dev' ? 'https://shequ-test.dxchain.com' : process.env.REACT_APP_ENV === 'pre' ? "https://shequ-test.dxchain.com" : ''
@@ -52,15 +57,17 @@ const errorHandler = (error: { response: Response }): Response => {
 /**
  * 配置request请求时的默认参数
  */
-var token = storage.get('user') && Object.prototype.hasOwnProperty.call(storage.get('user'), 'token') && storage.get('user').token || ''
 const request = extend({
   errorHandler, // 默认错误处理
   // credentials: 'include', // 默认请求是否带上cookie
-  headers: {
-    'Authorization': `Bearer ${token}`
-  }
 });
 request.interceptors.request.use((url, options) => {
+  if (url.indexOf('api/login/phone') === -1) {
+    var token = storage.get('user') && Object.prototype.hasOwnProperty.call(storage.get('user'), 'token') && storage.get('user').token;
+
+    options.headers.authorization = `Bearer ${token}`;
+  }
+
   return (
     {
       // url: options.mock ? url : url === '/api/login/phone' ? `https://shequ-test.dxchain.com${url}` : `${baseUrl}${url}`,
@@ -70,6 +77,23 @@ request.interceptors.request.use((url, options) => {
       },
     }
   );
+});
+request.interceptors.response.use(async (response, options) => {
+  const { redirect } = getPageQuery();
+  const data = await response.clone().json();
+  if (data && data.code === 401) {
+    storage.clear();
+    clareAuthority();
+    if (window.location.pathname !== '/user/login' && !redirect) {
+      history.replace({
+        pathname: '/user/login',
+        search: stringify({
+          redirect: window.location.href,
+        }),
+      });
+    }
+  }
+  return response;
 });
 
 
