@@ -22,7 +22,7 @@
 1.git checkout -b 分支名
 </div>
 <div>
-2.codeing
+2.coding
 </div>
 <div>
 3.npm run deploy 发布到github pages
